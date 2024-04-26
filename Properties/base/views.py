@@ -3,6 +3,8 @@ from .forms import SignUpForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.views.decorators.http import require_POST
+from .models import Profile
 
 
 def home(request):
@@ -13,7 +15,7 @@ def signup(request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.refresh_from_db()  # Carrega o perfil criado pelo sinal
+            user.refresh_from_db()
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -25,8 +27,11 @@ def signup(request):
 
 @login_required(login_url='/login/')
 def profile(request):
-    return render(request, 'profile.html')
-
-def logout_view(request):
-    logout(request)
-    return redirect('home')
+    user = request.user
+    # Get the profile linked to the user, or create a new one if it doesn't exist
+    profile, created = Profile.objects.get_or_create(user=user)
+    context = {
+        'user': user,
+        'profile': profile,
+    }
+    return render(request, 'profile.html', context)
