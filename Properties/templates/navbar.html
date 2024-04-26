@@ -2,14 +2,13 @@
     <h1>LOGO</h1>
 </a>
 
-<ul>
+<nav>
     {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Logout</a></li>
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'profile' %}">Profile</a>
     {% else %}
-        <li><a href="{% url 'signup' %}">Sign Up</a></li>
-        <li><a href="{% url 'login' %}">Login</a></li>
-        <li><a href="{% url 'profile' %}">Profile</a></li>
-
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
     {% endif %}
-</ul>
+</nav>
 <hr>
