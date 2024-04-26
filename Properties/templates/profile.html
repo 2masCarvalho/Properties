@@ -10,4 +10,6 @@
     <p>Address: {{ profile.address }}</p>
     <p>Phone Number: {{ profile.phone_number }}</p>
   </div>
+  <a href="{% url 'edit_profile' %}">Editar Dados</a>
+
 {% endblock %}

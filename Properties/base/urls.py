@@ -3,6 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 from .views import profile
 from django.urls import reverse_lazy
+from .views import edit_profile
 
 
 urlpatterns = [
@@ -11,4 +12,6 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name='logout'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html', redirect_authenticated_user=True, next_page=reverse_lazy('profile')), name='login'),
     path('profile/', profile, name='profile'),
+    path('profile/edit/', edit_profile, name='edit_profile'),
+
 ]

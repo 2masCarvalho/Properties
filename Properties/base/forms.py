@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from .models import Profile
 
 class SignUpForm(UserCreationForm):
@@ -27,3 +27,18 @@ class SignUpForm(UserCreationForm):
                 phone_number=self.cleaned_data['phone_number'],
             )
         return user
+
+
+class CustomUserChangeForm(UserChangeForm):
+    password = None  # Exclude the password field
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
+        # Exclude any other fields you don't want to be editable.
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('address', 'phone_number')
