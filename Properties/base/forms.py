@@ -28,17 +28,14 @@ class SignUpForm(UserCreationForm):
             )
         return user
 
-
 class CustomUserChangeForm(UserChangeForm):
-    password = None  # Exclude the password field
+    password = None
 
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email')
-        # Exclude any other fields you don't want to be editable.
-
 
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ('address', 'phone_number')
+        fields = ('address', 'phone_number', 'profile_picture')

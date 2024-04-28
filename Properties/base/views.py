@@ -30,7 +30,6 @@ def signup(request):
 @login_required(login_url='/login/')
 def profile(request):
     user = request.user
-    # Get the profile linked to the user, or create a new one if it doesn't exist
     profile, created = Profile.objects.get_or_create(user=user)
     context = {
         'user': user,
@@ -43,10 +42,13 @@ def profile(request):
 def edit_profile(request):
     if request.method == 'POST':
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, instance=request.user.profile)
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)  # Atenção ao request.FILES aqui
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
-            profile_form.save()
+            profile = profile_form.save(commit=False)
+            if 'profile_picture' in request.FILES:
+                profile.profile_picture = request.FILES['profile_picture']
+            profile.save()
             messages.success(request, 'Your profile was successfully updated!')
             return redirect('profile')
     else:

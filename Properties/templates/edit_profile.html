@@ -1,31 +1,46 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <div class="centered-content">
+  <div class="edit-profile-container">
     <h2>Edit Profile</h2>
-    <form method="POST" class="profile-form">
+    <form method="POST" class="edit-profile-form" enctype="multipart/form-data">
       {% csrf_token %}
 
-      <div class="form-row">
-        {{ user_form.username.label_tag }}
+      <div class="form-group picture-group">
+        <label for="{{ profile_form.profile_picture.id_for_label }}">Profile picture:</label>
+        {{ profile_form.profile_picture }}
+        {% if user.profile.profile_picture %}
+          <img src="{{ user.profile.profile_picture.url }}" alt="Profile picture" class="profile-picture-preview"/>
+        {% endif %}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ user_form.username.id_for_label }}">Username:</label>
         {{ user_form.username }}
-        {{ user_form.first_name.label_tag }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ user_form.first_name.id_for_label }}">First name:</label>
         {{ user_form.first_name }}
-        {{ user_form.last_name.label_tag }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ user_form.last_name.id_for_label }}">Last name:</label>
         {{ user_form.last_name }}
       </div>
 
-      <div class="form-row">
-        {{ profile_form.last_name.label_tag }}
-        {{ profile_form.last_name }}
-        {{ user_form.email.label_tag }}
+      <div class="form-group">
+        <label for="{{ user_form.email.id_for_label }}">Email:</label>
         {{ user_form.email }}
       </div>
-      <!-- Address and Phone Number -->
-      <div class="form-row">
-        {{ profile_form.address.label_tag }}
+
+      <div class="form-group">
+        <label for="{{ profile_form.address.id_for_label }}">Address:</label>
         {{ profile_form.address }}
-        {{ profile_form.phone_number.label_tag }}
+      </div>
+
+      <div class="form-group">
+        <label for="{{ profile_form.phone_number.id_for_label }}">Phone number:</label>
         {{ profile_form.phone_number }}
       </div>
 
