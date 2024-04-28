@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family:'SFProDisplay', sans-serif;
 }
 
@@ -15,11 +16,12 @@ hr {
     border: none;
 }
 
-body {
+html, body {
+    height: 100%; /* Garanta que o html e body ocupem 100% da altura da tela */
     background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
-    background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar {
@@ -275,5 +277,36 @@ button {
     object-fit: cover;
 }
 
+.footer {
+    padding: 20px 0;
+    color: white;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
 
+.footer a {
 
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container .content {
+    padding: 20px;
+}
+
+.footer {
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
