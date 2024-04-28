@@ -1,13 +1,13 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Properties</title>
+    <title>PROPERTIES Portugal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     {% include 'navbar.html' %}
-    {% block content %}
-
-    {% endblock %}
+    {% block content %}{% endblock %}
 </body>
 </html>

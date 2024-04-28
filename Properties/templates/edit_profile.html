@@ -1,12 +1,38 @@
 {% extends 'main.html' %}
 
 {% block content %}
-  <h2>Edit Profile</h2>
-  <form method="POST">
-    {% csrf_token %}
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    <button type="submit">Update</button>
-  </form>
-  <a href="{% url 'profile' %}">Cancel</a>
+  <div class="centered-content">
+    <h2>Edit Profile</h2>
+    <form method="POST" class="profile-form">
+      {% csrf_token %}
+
+      <div class="form-row">
+        {{ user_form.username.label_tag }}
+        {{ user_form.username }}
+        {{ user_form.first_name.label_tag }}
+        {{ user_form.first_name }}
+        {{ user_form.last_name.label_tag }}
+        {{ user_form.last_name }}
+      </div>
+
+      <div class="form-row">
+        {{ profile_form.last_name.label_tag }}
+        {{ profile_form.last_name }}
+        {{ user_form.email.label_tag }}
+        {{ user_form.email }}
+      </div>
+      <!-- Address and Phone Number -->
+      <div class="form-row">
+        {{ profile_form.address.label_tag }}
+        {{ profile_form.address }}
+        {{ profile_form.phone_number.label_tag }}
+        {{ profile_form.phone_number }}
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="button">Update</button>
+        <a href="{% url 'profile' %}" class="button cancel-button">Cancel</a>
+      </div>
+    </form>
+  </div>
 {% endblock %}

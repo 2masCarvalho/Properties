@@ -59,3 +59,12 @@ def edit_profile(request):
     }
     return render(request, 'edit_profile.html', context)
 
+def buy(request):
+    return render(request, 'buy.html')
+
+def sell(request):
+    return render(request, 'sell.html')
+
+
+
+

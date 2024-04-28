@@ -1,14 +1,62 @@
 <!DOCTYPE html>
-<html>
+{% load static %}
+<html lang="en">
 <head>
-    <title>Sign Up</title>
+    <meta charset="UTF-8">
+    <title>Sign Up - PROPERTIES Portugal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <h2>Sign Up</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign Up</button>
-    </form>
+    {% include 'navbar.html' %}
+
+    <div class="content">
+        <h2>Sign Up</h2>
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Username:</label>
+                    {{ form.username }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.first_name.id_for_label }}">First name:</label>
+                    {{ form.first_name }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.last_name.id_for_label }}">Last name:</label>
+                    {{ form.last_name }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">Email:</label>
+                    {{ form.email }}
+                </div>
+            </div>
+            <!-- Add other fields following the same pattern -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">Password:</label>
+                    {{ form.password1 }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
+                    {{ form.password2 }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.address.id_for_label }}">Address:</label>
+                    {{ form.address }}
+                </div>
+                <div class="form-group">
+                    <label for="{{ form.phone_number.id_for_label }}">Phone number:</label>
+                    {{ form.phone_number }}
+                </div>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+    </div>
+
 </body>
 </html>
