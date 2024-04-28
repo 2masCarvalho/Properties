@@ -1,6 +1,7 @@
 {% extends 'main.html' %}
-{% block content %}
+{% load static %}
 
+{% block content %}
 <div class="content">
     <h1>BEM-VINDO À PROPERTIES</h1>
     <p>A maior seleção de Imóveis Exclusivos em Portugal!</p>
@@ -8,5 +9,10 @@
         <button type="button" onclick="location.href='{% url 'comprar' %}'">COMPRAR</button>
         <button type="button" onclick="location.href='{% url 'vender' %}'">VENDER</button>
     </div>
+</div>
+
+<div class="content">
+    <h2>Serviço Gratuito e Personalizado para Compradores</h2>
+    <button type="button" onclick="location.href='{% url 'signup' %}'">CLIQUE AQUI!</button>
 </div>
 {% endblock %}

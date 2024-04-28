@@ -26,12 +26,11 @@ html, body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
-
-
 .navbar {
-    width: 85%;
+    width: 100%;
     margin: auto;
     padding: 15px 0;
     display: flex;
@@ -40,6 +39,7 @@ html, body {
     top: 0;
     left: 0;
     z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .navbar-logo {
@@ -53,7 +53,6 @@ html, body {
     padding-left: 20px;
     font-weight: bold;
 }
-
 
 .navbar ul {
     list-style: none;
@@ -92,15 +91,13 @@ html, body {
 
 }
 
-
-
 .content {
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 50vh;
+    min-height: 40vh;
     text-align: center;
     color: #fff;
 }
@@ -118,6 +115,12 @@ html, body {
 
 .content h1 {
     font-size: 70px;
+    margin-top: 80px;
+
+}
+
+.content h2 {
+    font-size: 45px;
     margin-top: 80px;
 
 }
@@ -296,9 +299,24 @@ button {
     object-fit: cover;
 }
 
+form {
+    font-size: 16px;
+    padding 15px 10px;
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    outline: none;
+}
 
+.centralized-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+    height: auto;
+    margin-top: -5vh;
 
-
+}
 
 
 
