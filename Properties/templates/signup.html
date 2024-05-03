@@ -7,56 +7,65 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    {% include 'navbar.html' %}
+{% include 'navbar.html' %}
 
-    <div class="content-signup">
-        <h2>Sign Up</h2>
-        <form method="post" class="signup-form">
-            {% csrf_token %}
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="{{ form.username.id_for_label }}">Username:</label>
-                    {{ form.username }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.first_name.id_for_label }}">First name:</label>
-                    {{ form.first_name }}
-                </div>
+<div class="content-signup">
+    <h2>Sign Up</h2>
+
+    <form method="post" class="signup-form">
+        {% csrf_token %}
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Username:</label>
+                {{ form.username }}
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="{{ form.last_name.id_for_label }}">Last name:</label>
-                    {{ form.last_name }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.email.id_for_label }}">Email:</label>
-                    {{ form.email }}
-                </div>
+            <div class="form-group">
+                <label for="{{ form.first_name.id_for_label }}">First name:</label>
+                {{ form.first_name }}
             </div>
-            <!-- Add other fields following the same pattern -->
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="{{ form.password1.id_for_label }}">Password:</label>
-                    {{ form.password1 }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
-                    {{ form.password2 }}
-                </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.last_name.id_for_label }}">Last name:</label>
+                {{ form.last_name }}
             </div>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="{{ form.address.id_for_label }}">Address:</label>
-                    {{ form.address }}
-                </div>
-                <div class="form-group">
-                    <label for="{{ form.phone_number.id_for_label }}">Phone number:</label>
-                    {{ form.phone_number }}
-                </div>
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
             </div>
-            <button type="submit">Sign Up</button>
-        </form>
-    </div>
+        </div>
+        <!-- Add other fields following the same pattern -->
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Password:</label>
+                {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
+                {{ form.password2 }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.address.id_for_label }}">Address:</label>
+                {{ form.address }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.phone_number.id_for_label }}">Phone number:</label>
+                {{ form.phone_number }}
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.role.id_for_label }}">Role:</label>
+                {{ form.role }}
+            </div>
+        </div>
+
+        <button type="submit">Sign Up</button>
+    </form>
+</div>
 
 </body>
 </html>

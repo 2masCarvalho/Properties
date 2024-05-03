@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <h2>Add New Property</h2>
+</div>
+<form method="post" enctype="multipart/form-data" class="signup-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
+{% endblock %}

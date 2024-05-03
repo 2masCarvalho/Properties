@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, ProfileForm, CustomUserChangeForm
+from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -69,4 +69,24 @@ def sell(request):
 
 
 
+@login_required
+def add_property(request):
+    if request.user.profile.user_type != 'host':
+        return redirect('home')
 
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, request.FILES)
+        if form.is_valid():
+            property = form.save(commit=False)
+            property.host = request.user
+            property.save()
+
+
+            for each in form.cleaned_data['images']:
+                PropertyImage.objects.create(property=property, image=each)
+
+            return redirect('property_detail', property_id=property.id)
+    else:
+        form = PropertyForm()
+
+    return render(request, 'add_property.html', {'form': form})

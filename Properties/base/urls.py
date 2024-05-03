@@ -9,12 +9,15 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.home, name="home"),
     path('signup/', views.signup, name='signup'),
+    path('add-property/', views.add_property, name='add_property'),
     path('logout/', auth_views.LogoutView.as_view(next_page=reverse_lazy('home')), name='logout'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html', redirect_authenticated_user=True, next_page=reverse_lazy('profile')), name='login'),
     path('profile/', profile, name='profile'),
     path('profile/edit/', edit_profile, name='edit_profile'),
     path('comprar/', views.buy, name='comprar'),
     path('vender/', views.sell, name='vender'),
+
+
 ]
 
 if settings.DEBUG:
