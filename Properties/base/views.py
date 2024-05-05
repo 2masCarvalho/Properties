@@ -1,16 +1,18 @@
-from django.shortcuts import render, redirect
-from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from django.views.decorators.http import require_POST
-from .models import Profile, Property, PropertyImage
-from django.contrib.auth.forms import UserChangeForm
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserChangeForm
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
+
+from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm
+from .models import Profile, Property, PropertyImage
 
 
 def home(request):
     return render(request, 'home.html')
+
 
 def signup(request):
     if request.method == 'POST':
@@ -27,6 +29,7 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
 
+
 @login_required(login_url='/login/')
 def profile(request):
     user = request.user
@@ -42,7 +45,8 @@ def profile(request):
 def edit_profile(request):
     if request.method == 'POST':
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)  # Atenção ao request.FILES aqui
+        profile_form = ProfileForm(request.POST, request.FILES,
+                                   instance=request.user.profile)  # Atenção ao request.FILES aqui
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile = profile_form.save(commit=False)
@@ -61,6 +65,7 @@ def edit_profile(request):
     }
     return render(request, 'edit_profile.html', context)
 
+
 def buy(request):
     properties = Property.objects.order_by('-id')
 
@@ -72,27 +77,11 @@ def buy(request):
 
     return render(request, 'buy.html', {'properties_with_images': properties_with_images})
 
+
 def sell(request):
     return render(request, 'sell.html')
 
-'''
-@login_required
-def add_property(request):
-    if request.user.profile.user_type == 'host':
-        if request.method == 'POST':
-            form = PropertyForm(request.POST)
-            if form.is_valid():
-                property = form.save(commit=False)
-                property.host = request.user.profile
-                property.save()
-                return redirect('home') #add the url do the property details
-        else:
-            form = PropertyForm()
-        return render(request, 'add_property.html', {'form': form})
-    else:
-        return redirect('home')
-        
-'''
+
 @login_required
 def add_property(request):
     if request.user.profile.user_type == 'host':
@@ -116,3 +105,8 @@ def add_property(request):
         return render(request, 'add_property.html', {'form': property_form, 'image_form': image_form})
     else:
         return redirect('home')
+
+
+def property_details(request, pk):
+    property_obj = get_object_or_404(Property, pk=pk)
+    return render(request, 'property_details.html', {'property': property_obj})

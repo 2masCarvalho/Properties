@@ -10,6 +10,7 @@
     <div class="card-container">
     {% if properties_with_images %}
         {% for property, image in properties_with_images %}
+            <a href="{% url 'property_detail' property.pk %}" class="property-link">
             <div class="property-card">
                 {% if image %}
                     <img src="{{ image.image.url }}" alt="{{ property.title }} - Image" class="property-image">
@@ -22,6 +23,7 @@
                 <p><strong>Localização:</strong> {{ property.location }}</p>
                 <p><strong>Preço:</strong> {{ property.price }}</p>
             </div>
+            </a>
         {% endfor %}
     {% else %}
         <div class="no-property">
