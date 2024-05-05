@@ -5,9 +5,10 @@
 <div class="content">
     <h2>Add New Property</h2>
 </div>
-<form method="post" enctype="multipart/form-data" class="signup-form">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Submit</button>
+    {{ image_form.as_p }}
+    <button type="submit">Adicionar Propriedade</button>
 </form>
 {% endblock %}

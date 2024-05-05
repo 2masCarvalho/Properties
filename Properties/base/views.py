@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyForm
+from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -67,26 +67,46 @@ def buy(request):
 def sell(request):
     return render(request, 'sell.html')
 
-
-
+'''
 @login_required
 def add_property(request):
-    if request.user.profile.user_type != 'host':
-        return redirect('home')
-
-    if request.method == 'POST':
-        form = PropertyForm(request.POST, request.FILES)
-        if form.is_valid():
-            property = form.save(commit=False)
-            property.host = request.user
-            property.save()
-
-
-            for each in form.cleaned_data['images']:
-                PropertyImage.objects.create(property=property, image=each)
-
-            return redirect('property_detail', property_id=property.id)
+    if request.user.profile.user_type == 'host':
+        if request.method == 'POST':
+            form = PropertyForm(request.POST)
+            if form.is_valid():
+                property = form.save(commit=False)
+                property.host = request.user.profile
+                property.save()
+                return redirect('home') #add the url do the property details
+        else:
+            form = PropertyForm()
+        return render(request, 'add_property.html', {'form': form})
     else:
-        form = PropertyForm()
+        return redirect('home')
+        
+'''
+@login_required
+def add_property(request):
+    if request.user.profile.user_type == 'host':
+        if request.method == 'POST':
+            property_form = PropertyForm(request.POST)
+            image_form = PropertyImageForm(request.POST, request.FILES)
 
-    return render(request, 'add_property.html', {'form': form})
+            if property_form.is_valid() and image_form.is_valid():
+                # Salva a propriedade
+                property_instance = property_form.save(commit=False)
+                property_instance.host = request.user.profile
+                property_instance.save()
+
+                # Obtém os arquivos de imagem enviados
+                for uploaded_file in image_form.cleaned_data['images']:
+                    PropertyImage.objects.create(property=property_instance, image=uploaded_file)
+
+                return redirect('home')  # Redireciona para a página desejada
+        else:
+            property_form = PropertyForm()
+            image_form = PropertyImageForm()
+
+        return render(request, 'add_property.html', {'form': property_form, 'image_form': image_form})
+    else:
+        return redirect('home')
