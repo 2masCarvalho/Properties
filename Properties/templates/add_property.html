@@ -2,12 +2,49 @@
 {% load static %}
 
 {% block content %}
+<!--
 <div class="content">
     <h2>Add New Property</h2>
 </div>
-<form method="post" enctype="multipart/form-data" class="signup-form">
+<form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Submit</button>
+    {{ image_form.as_p }}
+    <button type="submit">Adicionar Propriedade</button>
 </form>
+-->
+<div class="content-add-property">
+    <h2>Add New Property</h2>
+
+    <form method="post" enctype="multipart/form-data" class="add-property-form">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label for="{{ form.location.id_for_label }}">Location:</label>
+                {{ form.location }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.price.id_for_label }}">Price:</label>
+                {{ form.price }}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ image_form.images.id_for_label }}">Property Images:</label>
+            {{ image_form.images }}
+        </div>
+
+        <button type="submit">Add Property</button>
+    </form>
+</div>
 {% endblock %}
