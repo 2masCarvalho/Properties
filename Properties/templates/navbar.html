@@ -10,7 +10,7 @@
     <ul>
         <li><a href="{% url 'home' %}" class="nav-link home">HOME</a></li>
         <li><a href="{% url 'comprar' %}" class="nav-link comprar">Comprar</a></li>
-        <li><a href="{% url 'vender' %}" class="nav-link vender">Vender</a></li>
+        <li><a href="{% url 'add_property' %}" class="nav-link vender">Vender</a></li>
         {% if user.is_authenticated %}
             {% if user.profile.profile_picture %}
                 <li>
