@@ -16,6 +16,10 @@ hr {
     border: none;
 }
 
+hr {
+    display: none; /* Esconde todos os <hr> no site */
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -436,4 +440,34 @@ form {
     border-color: #0056b3; /* Cor mais visível quando focado */
 }
 
+.navbar .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px); /* Adiciona um espaço extra abaixo do navbar */
+    left: 0;
+    right: 0;
+    background-color: transparent !important; /* Fundo transparente */
+    border: 2px solid #FFFFFF !important; /* Borda branca */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.navbar .dropdown-menu.show {
+    display: block !important; /* Assegura que o menu seja exibido quando ativado */
+}
+
+.navbar .dropdown-item {
+    padding: 12px 20px;
+    color: #FFFFFF !important; /* Cor do texto branco */
+    text-align: left;
+    background-color: transparent !important; /* Fundo transparente para cada item */
+    text-decoration: none;
+    white-space: nowrap;
+    display: block;
+    width: 100%;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important; /* Destaque ao passar o mouse */
+}
 
