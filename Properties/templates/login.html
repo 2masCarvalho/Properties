@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - PROPERTIES Portugal</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
-</head>
-<body>
-    {% include 'navbar.html' %}
+{% extends 'main.html' %}
+
+{% block content %}
 
     <div class="content">
         <h2>Login</h2>
@@ -16,8 +8,12 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit" >Login</button>
+            <br>
+            <div style=" ">
+                <a href="{% url 'signup' %}" style="padding-top: 20px">create account</a>
+            </div>
         </form>
+
     </div>
 
-</body>
-</html>
+{% endblock %}

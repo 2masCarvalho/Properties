@@ -325,14 +325,7 @@ html, body {
     object-fit: cover;
 }
 
-form {
-    font-size: 16px;
-    padding: 15px 10px;
-    width: 100%;
-    border: 0;
-    border-radius: 5px;
-    outline: none;
-}
+
 
 .centralized-image {
     display: block;
@@ -471,3 +464,38 @@ form {
     background-color: rgba(255, 255, 255, 0.1) !important; /* Destaque ao passar o mouse */
 }
 
+form {
+    background-color: #1A1F26; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding:  30px; /* Spacious padding */
+    padding-bottom: 60px;
+    max-width: 400px; /* Restrict form width */
+    width: 100%; /* Make it responsive */
+    margin: 20px; /* Center the form */
+
+}
+form input[type="text"],
+form input[type="password"],
+form input[type="email"] {
+    width: 100%;
+    padding: 12px; /* Uniform padding */
+    margin-bottom: 0px; /* Spacing between fields */
+    border: 0 solid #ccc; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-sizing: border-box;
+    font-size: 16px; /* Increased font size */
+    background-color: #E0E0E0;
+}
+form button[type="submit"] {
+    background-color: #FF5A5F; /* Airbnb's signature red */
+    border: none;
+    border-radius: 8px; /* Rounded button */
+    color: #fff; /* White text */
+    padding: 12px 24px; /* Spacious padding */
+    cursor: pointer;
+    font-size: 16px; /* Increased font size */
+    transition: background-color 0.2s ease;
+    width: 50%; /* Full-width button */
+
+}
