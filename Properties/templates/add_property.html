@@ -2,9 +2,10 @@
 {% load static %}
 
 {% block content %}
-<div class="content-add-property">
-
-    <form method="post" enctype="multipart/form-data" class="add-property-form">
+<div class="content">
+    <h2>Register Property</h2>
+    <p>We're excited to help you list your property! Please provide all the necessary details using the form below. Filling out these fields ensures potential clients receive a comprehensive and accurate view of your listing, helping them make informed decisions. Let's work together to get your property showcased and rented or sold quickly!</p>
+    <form method="post" enctype="multipart/form-data" class="form-login" style="max-width: 800px">
         {% csrf_token %}
 
         <div class="form-group">

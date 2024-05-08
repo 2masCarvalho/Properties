@@ -1,71 +1,69 @@
-<!DOCTYPE html>
-{% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sign Up - PROPERTIES Portugal</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
-</head>
-<body>
-{% include 'navbar.html' %}
+{% extends 'main.html' %}
+
+{% block content %}
 
 <div class="content">
     <h2>Sign Up</h2>
 
-    <form method="post" class="">
-        {% csrf_token %}
+        <form method="post" class="form-login" style="max-width: 800px">
+    {% csrf_token %}
 
-            <div class="form-group">
-                <label for="{{ form.username.id_for_label }}">Username:</label>
-                {{ form.username }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.first_name.id_for_label }}">First name:</label>
-                {{ form.first_name }}
-            </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.first_name.id_for_label }}">First name:</label>
+            {{ form.first_name }}
+        </div>
+    </div>
 
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.last_name.id_for_label }}">Last name:</label>
-                {{ form.last_name }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.email.id_for_label }}">Email:</label>
-                {{ form.email }}
-            </div>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="{{ form.last_name.id_for_label }}">Last name:</label>
+            {{ form.last_name }}
         </div>
-        <!-- Add other fields following the same pattern -->
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.password1.id_for_label }}">Password:</label>
-                {{ form.password1 }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
-                {{ form.password2 }}
-            </div>
+        <div class="form-group">
+            <label for="{{ form.email.id_for_label }}">Email:</label>
+            {{ form.email }}
         </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.address.id_for_label }}">Address:</label>
-                {{ form.address }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.phone_number.id_for_label }}">Phone number:</label>
-                {{ form.phone_number }}
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.user_type.id_for_label }}">Role:</label>
-                {{ form.user_type }}
-            </div>
-        </div>
+    </div>
 
-        <button type="submit" style="justify-content: center;">Sign Up</button>
-    </form>
+    <div class="form-row">
+        <div class="form-group">
+            <label for="{{ form.password1.id_for_label }}">Password:</label>
+            {{ form.password1 }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">Password confirmation:</label>
+            {{ form.password2 }}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="{{ form.address.id_for_label }}">Address:</label>
+            {{ form.address }}
+        </div>
+        <div class="form-group">
+            <label for="{{ form.phone_number.id_for_label }}">Phone number:</label>
+            {{ form.phone_number }}
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group">
+            <label for="{{ form.user_type.id_for_label }}">Role:</label>
+            {{ form.user_type }}
+        </div>
+    </div>
+
+    <button type="submit" style="justify-content: center;">Sign Up</button>
+</form>
+
 </div>
 
-</body>
-</html>
+
+
+{% endblock %}

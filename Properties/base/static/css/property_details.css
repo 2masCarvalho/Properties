@@ -7,7 +7,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
 }
-
+.property-detail p{
+    align-content: start;
+}
 .property-title {
     font-size: 28px;
     font-weight: bold;

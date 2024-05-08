@@ -101,7 +101,7 @@ html, body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 40vh;
+    min-height: 20vh;
     text-align: center;
     color: #fff;
 }
@@ -125,7 +125,7 @@ html, body {
 
 .content h2 {
     font-size: 45px;
-    margin-top: 80px;
+    margin-top: 20px;
 
 }
 
@@ -325,14 +325,7 @@ html, body {
     object-fit: cover;
 }
 
-form {
-    font-size: 16px;
-    padding: 15px 10px;
-    width: 100%;
-    border: 0;
-    border-radius: 5px;
-    outline: none;
-}
+
 
 .centralized-image {
     display: block;
@@ -349,25 +342,32 @@ form {
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
+    gap: 20px; /* Adjust the gap between each card */
+    justify-content: flex-start; /* Ensure left-to-right alignment */
+    padding: 20px 70px;
+
     background-color: #f5f5f5;
 }
 
 .property-card {
+    position: relative; /* Important for positioning child elements */
     background-color: white;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 300px;
-    height: 400px; /* Fixed height */
+    width: 300px;
+    height: 300px;
     padding: 15px;
     text-align: center;
     transition: transform 0.2s;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+
+
+.property-card p{
+    align-content: start;
 }
 
 .property-card:hover {
@@ -471,3 +471,145 @@ form {
     background-color: rgba(255, 255, 255, 0.1) !important; /* Destaque ao passar o mouse */
 }
 
+.form-login {
+    background-color: #1A1F26; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 30px; /* Spacious padding */
+    padding-bottom: 60px;
+    max-width: 400px; /* Restrict form width */
+    width: 100%; /* Make it responsive */
+    margin: 20px; /* Center the form */
+}
+
+.form-login input[type="text"],
+.form-login input[type="password"],
+.form-login input[type="email"] {
+    width: 100%;
+    padding: 12px; /* Uniform padding */
+    margin-bottom: 0px; /* Spacing between fields */
+    border: 0 solid #ccc; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    box-sizing: border-box;
+    font-size: 16px; /* Increased font size */
+    background-color: #E0E0E0;
+}
+
+.form-login button[type="submit"] {
+    background-color: #FF5A5F; /* Airbnb's signature red */
+    border: none;
+    border-radius: 8px; /* Rounded button */
+    color: #fff; /* White text */
+    padding: 12px 24px; /* Spacious padding */
+    cursor: pointer;
+    font-size: 16px; /* Increased font size */
+    transition: background-color 0.2s ease;
+    width: 50%; /* Full-width button */
+}
+
+.form-login .form-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Add spacing between the two fields */
+    margin-bottom: 15px; /* Add margin between each row */
+}
+
+/* Ensure form groups are half-width within each row */
+.form-login .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-login .form-group label {
+    margin-bottom: 5px; /* Add space between the label and the field */
+}
+
+.form-login .form-group input,
+.form-login .form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background-color: #E0E0E0;
+    font-size: 16px;
+}
+
+.favorites-button {
+    position: absolute; /* Allows placement relative to the nearest positioned ancestor (property-card) */
+    top: 20px; /* Adjust to move the button down from the top edge */
+    right: 20px; /* Adjust to move the button left from the right edge */
+    background-color: #FF5A5F; /* Customize the button color */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    cursor: pointer;
+    font-size: 16px; /* Adjust font size as needed */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for visibility */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s, background-color 0.2s;
+    z-index: 10;
+}
+
+.favorites-button:hover {
+    background-color: #ff4c4f; /* Darker shade on hover */
+    transform: scale(1.1);
+}
+
+.property-price {
+    position: absolute;
+    bottom: 80px; /* Adjust based on required offset */
+    left: 30px; /* Adjust based on required offset */
+    color: white;
+    font-size: 1em; /* Increase as needed */
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for visibility */
+    padding: 5px 10px; /* Padding around the text */
+    border-radius: 5px; /* Slight rounding for a softer look */
+    z-index: 10; /* Ensure it is on top of other elements */
+    visibility: visible; /* Ensure visibility is set to 'visible' */
+    opacity: 1; /* Ensure full opacity */
+}
+
+.property-location {
+    position: absolute;
+    bottom: 30px; /* Adjust the spacing from the bottom */
+    left: 10px; /* Adjust the spacing from the left */
+    color: #333;
+    font-size: 1.1em;
+    font-weight: bold;
+
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 10; /* Ensure it's visible above other elements */
+}
+
+.property-details {
+    display: flex; /* Arrange items in a row */
+    gap: 20px; /* Space between the items */
+    align-items: center; /* Vertically align items */
+    margin-top: 10px; /* Adjust the value to move the row down */
+    padding-top: 10px; /* Optionally, add extra padding if needed */
+
+}
+
+.detail-item {
+    display: flex; /* Arrange the icon and text horizontally */
+    align-items: center; /* Vertically align the icon with the text */
+    gap: 8px; /* Space between the icon and text */
+    color: #333; /* Adjust text color as needed */
+}
+
+.detail-item i {
+    font-size: 1.2em; /* Adjust icon size as needed */
+    color: #555; /* Adjust icon color as needed */
+}
+
+.detail-item strong {
+    font-weight: bold;
+}
