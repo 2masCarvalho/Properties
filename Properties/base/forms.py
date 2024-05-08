@@ -56,7 +56,7 @@ class ProfileForm(forms.ModelForm):
 class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
-        fields = ('title', 'description', 'location', 'price')
+        fields = ('title', 'description', 'location', 'price', 'area', 'num_bedrooms', 'num_bathrooms', 'elevator', 'parking_spaces', 'pool')
 
 class PropertyImageForm(forms.Form):
     images = MultiFileField(min_num=1, max_num=10, max_file_size=1024 * 1024 * 5)  # Máx. 10 arquivos, 5MB cada
