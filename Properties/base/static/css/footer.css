@@ -1,0 +1,38 @@
+.footer {
+     background: linear-gradient(180deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+    color: #ffffff; /* White text color */
+    padding: 20px 0; /* Vertical padding */
+}
+
+.footer h5 {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer p, .footer address, .footer ul {
+    margin: 0;
+}
+
+.footer ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer ul li {
+    margin-bottom: 5px;
+}
+
+.footer ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer ul li a:hover {
+    text-decoration: underline;
+}
+
+.footer .text-center {
+    border-top: 1px solid #ffffff;
+    margin-top: 20px;
+    padding-top: 10px;
+}

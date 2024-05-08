@@ -7,17 +7,41 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link href="{% static 'css/fonts.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/property_details.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
-
-
 </head>
 <body>
     {% include 'navbar.html' %}
     {% block content %}{% endblock %}
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Sobre nós</h5>
+                    <p>PROPERTIES Algarve oferece uma seleção exclusiva de imóveis para compradores e vendedores.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Links úteis</h5>
+
+                </div>
+                <div class="col-md-4">
+                    <h5>Contato</h5>
+                    <address>
+                        Rua do Algarve, 123<br>
+                        Lisboa, Portugal<br>
+                        Email: info@properties-algarve.com<br>
+                        Telefone: +351-123-456-789
+                    </address>
+                </div>
+            </div>
+            <div class="text-center py-3">
+                <p>© 2024 PROPERTIES Algarve. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JavaScript -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

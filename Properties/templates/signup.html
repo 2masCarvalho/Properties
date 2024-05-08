@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <title>Sign Up - PROPERTIES Portugal</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 </head>
 <body>
 {% include 'navbar.html' %}
 
-<div class="content-signup">
+<div class="content">
     <h2>Sign Up</h2>
 
-    <form method="post" class="signup-form">
+    <form method="post" class="">
         {% csrf_token %}
 
             <div class="form-group">
@@ -62,7 +63,7 @@
             </div>
         </div>
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" style="justify-content: center;">Sign Up</button>
     </form>
 </div>
 

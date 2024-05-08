@@ -84,6 +84,7 @@ def sell(request):
 
 @login_required
 def add_property(request):
+    # Check if the user is a 'host'
     if request.user.profile.user_type == 'host':
         if request.method == 'POST':
             property_form = PropertyForm(request.POST)
@@ -104,6 +105,8 @@ def add_property(request):
 
         return render(request, 'add_property.html', {'form': property_form, 'image_form': image_form})
     else:
+        # Redirect to the home page with a temporary message
+        messages.info(request, "You need to be logged in as a host to add a property.")
         return redirect('home')
 
 

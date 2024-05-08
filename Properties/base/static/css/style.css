@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'SFProDisplay', sans-serif;
+    font-family: 'SFProDisplay', sans-serif;
 }
 
 @font-face {
@@ -22,7 +22,7 @@ html, body {
     min-height: 100%;
     position: relative;
     font-family: 'SFProDisplay', sans-serif;
-    background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+    background: linear-gradient(180deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
@@ -39,7 +39,7 @@ html, body {
     top: 0;
     left: 0;
     z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .navbar-logo {
@@ -75,7 +75,7 @@ html, body {
     text-transform: uppercase;
 }
 
-.navbar ul li::after{
+.navbar ul li::after {
     content: '';
     height: 3px;
     width: 0;
@@ -86,7 +86,7 @@ html, body {
     transition: 0.5s;
 }
 
-.navbar ul li:hover::after{
+.navbar ul li:hover::after {
     width: 100%;
 
 }
@@ -115,7 +115,7 @@ html, body {
 
 .content h1 {
     font-size: 70px;
-    margin-top: 80px;
+    margin-top: 20px;
 
 }
 
@@ -131,19 +131,40 @@ html, body {
     line-height: 25px;
 }
 
-button {
-    width: 200px;
-    padding: 15px 0;
-    text-align: center;
-    margin: 20px 10px;
-    border-radius: 25px;
-    font-weight: bold;
-    border: 2px solid #FFFFFF;
-    background: transparent;
-    color: #FFFFFF;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
+.content button {
+    background-color: #FF5A5F; /* Airbnb's brand color (or change this to your preferred color) */
+    color: #ffffff; /* White text */
+    border: none; /* Remove default borders */
+    padding: 15px 30px; /* Adjust padding as needed to increase size */
+    font-size: 18px; /* Adjust font size to make the text bigger */
+    font-weight: bold; /* Bold text */
+    border-radius: 25px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor for better UX */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+    margin-right: 15px; /* Add right margin to space buttons */
+}
+
+.content button:last-of-type {
+    margin-right: 0; /* Remove the right margin from the last button */
+}
+
+.content button:hover {
+    background-color: #e5484f; /* Slightly darker shade */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+}
+
+.content button:focus {
+    outline: none; /* Remove the default outline */
+    box-shadow: 0 0 0 3px rgba(255, 90, 95, 0.4); /* Highlight outline */
+}
+/* Focus state for better accessibility */
+.carousel-caption-custom {
+    position: absolute; /* Ensure it's absolutely positioned within the carousel */
+    top: 40%; /* Adjust this value as needed */
+    width: 100%; /* Make it full-width to align centrally */
+    text-align: center; /* Center-align text content */
+    transform: translateY(-50%); /* Optional: Adjusts position for vertical centering */
 }
 
 .signup-form {
@@ -155,8 +176,8 @@ button {
 }
 
 .form-group {
-    flex-grow: 1;  /* Permite que cada grupo de formulário cresça para preencher o espaço disponível */
-    margin-right: 20px;  /* Adiciona margem à direita para cada form-group */
+    flex-grow: 1; /* Permite que cada grupo de formulário cresça para preencher o espaço disponível */
+    margin-right: 20px; /* Adiciona margem à direita para cada form-group */
 }
 
 .signup-form button {
@@ -192,9 +213,9 @@ button {
 }
 
 .form-actions {
-  grid-column: 1 / -1;
-  display: flex;
-  justify-content: space-around;
+    grid-column: 1 / -1;
+    display: flex;
+    justify-content: space-around;
 }
 
 .profile-picture img {
@@ -202,7 +223,7 @@ button {
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 60px;
     margin-bottom: 2em;
 }
@@ -318,6 +339,7 @@ form {
     margin-top: -5vh;
 
 }
+
 /*Css relativo a propridades do buy.html*/
 
 .card-container {
@@ -349,7 +371,7 @@ form {
 }
 
 .property-image {
-    width: 100%;  /* Ajusta a largura da imagem para preencher o contêiner */
+    width: 100%; /* Ajusta a largura da imagem para preencher o contêiner */
     height: 200px; /* Altura fixa para todas as imagens, mantendo a proporção visual */
     object-fit: cover; /* Garante que a imagem cubra o espaço disponível sem distorcer, cortando o excesso */
     border-radius: 5px; /* Bordas arredondadas para a imagem */
@@ -391,7 +413,7 @@ form {
 }
 
 .form-group input, .form-group select, .form-group textarea {
-    width: 100%;  /* Faz com que os inputs ocupem o espaço total do .form-group */
+    width: 100%; /* Faz com que os inputs ocupem o espaço total do .form-group */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
