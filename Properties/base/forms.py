@@ -1,10 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
-# Library para possibilitar fazer upload de varias fotos
 from multiupload.fields import MultiFileField
 
-from .models import Profile, Property, PropertyImage
+from .models import Profile, Property, PropertyImage, Message
 
 
 class SignUpForm(UserCreationForm):
@@ -61,4 +60,7 @@ class PropertyForm(forms.ModelForm):
 class PropertyImageForm(forms.Form):
     images = MultiFileField(min_num=1, max_num=10, max_file_size=1024 * 1024 * 5)  # Máx. 10 arquivos, 5MB cada
 
-
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['receiver', 'content']

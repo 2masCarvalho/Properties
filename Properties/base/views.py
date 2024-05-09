@@ -5,9 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-
-from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm
-from .models import Profile, Property, PropertyImage
+from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm, MessageForm
+from .models import Profile, Property, PropertyImage, Message
 
 
 def home(request):
@@ -113,3 +112,25 @@ def add_property(request):
 def property_details(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
     return render(request, 'property_details.html', {'property': property_obj})
+
+
+@login_required
+def messages_view(request):
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.save()
+            return redirect('messages')  # Redireciona de volta para a mesma página após enviar a mensagem
+    else:
+        form = MessageForm()
+
+    received_messages = Message.objects.filter(receiver=request.user).order_by('-timestamp')
+    sent_messages = Message.objects.filter(sender=request.user).order_by('-timestamp')
+
+    return render(request, 'messages.html', {
+        'form': form,
+        'received_messages': received_messages,
+        'sent_messages': sent_messages,
+    })

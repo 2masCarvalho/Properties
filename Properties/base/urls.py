@@ -17,6 +17,8 @@ urlpatterns = [
     path('comprar/', views.buy, name='comprar'),
     path('vender/', views.sell, name='vender'),
     path('comprar/<int:pk>/', views.property_details, name='property_detail'),
+    path('messages/', views.messages_view, name='messages'),  # Unificada
+
 ]
 
 if settings.DEBUG:
