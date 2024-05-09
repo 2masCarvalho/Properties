@@ -4,8 +4,8 @@ from django.utils import timezone
 
 class Profile(models.Model):
     USER_TYPES = (
-        ('host', 'Host'),
-        ('guest', 'Guest'),
+        ('host', 'Vendedor'),
+        ('guest', 'Cliente'),
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
