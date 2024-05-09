@@ -7,6 +7,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm, MessageForm
 from .models import Profile, Property, PropertyImage, Message
+from django.contrib.auth.models import User
+
 
 
 def home(request):
@@ -113,24 +115,36 @@ def property_details(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
     return render(request, 'property_details.html', {'property': property_obj})
 
-
-@login_required
 def messages_view(request):
+    users = User.objects.exclude(id=request.user.id)  # Exclude the current user from the list of conversations
+    selected_user = None
+    conversation = []
+
+    if 'user' in request.GET:
+        selected_user = get_object_or_404(User, id=request.GET['user'])
+        conversation = Message.objects.filter(
+            sender=request.user, receiver=selected_user
+        ) | Message.objects.filter(
+            sender=selected_user, receiver=request.user
+        )
+        conversation = conversation.order_by('timestamp')
+
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
             message = form.save(commit=False)
             message.sender = request.user
+            message.receiver_id = request.POST['receiver']
             message.save()
-            return redirect('messages')  # Redireciona de volta para a mesma página após enviar a mensagem
     else:
         form = MessageForm()
 
-    received_messages = Message.objects.filter(receiver=request.user).order_by('-timestamp')
-    sent_messages = Message.objects.filter(sender=request.user).order_by('-timestamp')
-
     return render(request, 'messages.html', {
+        'users': users,
+        'selected_user': selected_user,
+        'conversation': conversation,
         'form': form,
-        'received_messages': received_messages,
-        'sent_messages': sent_messages,
     })
+
+def sobrenos(request):
+    return render(request, 'sobrenos.html')

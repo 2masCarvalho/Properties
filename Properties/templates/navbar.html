@@ -13,16 +13,19 @@
         {% if user.is_authenticated %}
             {% if user.profile.profile_picture %}
 
-        <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="{{ user.profile.profile_picture.url }}" alt="Profile picture" class="navbar-profile-picture"/>
-            </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{% url 'profile' %}">Perfil</a>
-            <a class="dropdown-item" href="{% url 'messages' %}">Mensagens</a>
-            <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-        </div>
-        </li>
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="{{ user.profile.profile_picture.url }}" alt="Profile picture" class="navbar-profile-picture"/>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{% url 'profile' %}">Perfil</a>
+                    <a class="dropdown-item" href="{% url 'messages' %}">Mensagens</a>
+                    <a class="dropdown-item" href="#" onclick="document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                        {% csrf_token %}
+                    </form>
+                </div>
+            </li>
 
             {% else %}
                 <li>
@@ -31,16 +34,13 @@
                     </a>
                 </li>
             {% endif %}
-            <li class="logout-form-li">
-                <form action="{% url 'logout' %}" method="post" class="logout-form">
-                    {% csrf_token %}
-                    <button type="submit" class="logout-button">LOGOUT</button>
-                </form>
-            </li>
         {% else %}
             <li><a href="{% url 'login' %}" class="nav-link login">Login</a></li>
             <li><a href="{% url 'signup' %}" class="nav-link signup">Signup</a></li>
         {% endif %}
+
+        <li><a href="{% url 'sobrenos' %}" class="nav-link sobrenos">Sobre Nós</a></li>
+
     </ul>
 </nav>
 <hr>

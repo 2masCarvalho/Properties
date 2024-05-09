@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import profile, edit_profile
+from .views import profile, edit_profile, sobrenos
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.conf.urls.static import static
@@ -17,7 +17,8 @@ urlpatterns = [
     path('comprar/', views.buy, name='comprar'),
     path('vender/', views.sell, name='vender'),
     path('comprar/<int:pk>/', views.property_details, name='property_detail'),
-    path('messages/', views.messages_view, name='messages'),  # Unificada
+    path('messages/', views.messages_view, name='messages'),
+    path('sobrenos/', sobrenos, name='sobrenos'),
 
 ]
 

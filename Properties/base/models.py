@@ -12,7 +12,7 @@ class Profile(models.Model):
     address = models.CharField(max_length=255, null=True, blank=True)
     phone_number = models.CharField(max_length=15, null=True, blank=True)
     user_type = models.CharField(max_length=10, choices=USER_TYPES, default='guest')
-    profile_picture = models.ImageField(upload_to='profile_pics/', default='default.jpg')
+    profile_picture = models.ImageField(upload_to='profile_pics/', default='default.png')
 
     def __str__(self):
         return f'{self.user.username} Profile'
