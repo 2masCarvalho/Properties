@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'css/footer.css' %}">
     <link rel="stylesheet" href="{% static 'css/messages.css' %}">
     <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-
+    <link rel="stylesheet" href="{% static 'css/music.css' %}">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -19,6 +19,15 @@
 <body>
     {% include 'navbar.html' %}
     {% block content %}{% endblock %}
+
+    <!-- Music control -->
+    <div class="music-container">
+        <audio id="background-music" loop>
+            <source src="{% static 'music/backgroundmusic.mp3' %}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <button id="music-control" onclick="toggleMusic()">Pause Music</button>
+    </div>
 
     <!-- Footer -->
     <footer class="footer" style="margin-top: 200px">
@@ -30,7 +39,6 @@
                 </div>
                 <div class="col-md-4">
                     <h5>Links úteis</h5>
-
                 </div>
                 <div class="col-md-4">
                     <h5>Contato</h5>
@@ -51,5 +59,42 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for music control -->
+    <script>
+        function toggleMusic() {
+            var music = document.getElementById('background-music');
+            var control = document.getElementById('music-control');
+
+            if (music.paused) {
+                music.play();
+                control.innerHTML = 'Pause Music';
+            } else {
+                music.pause();
+                control.innerHTML = 'Play Music';
+            }
+        }
+
+        // Attempt to start playing music on page load
+        window.onload = function() {
+            var music = document.getElementById('background-music');
+            var control = document.getElementById('music-control');
+
+            // Try to play the music automatically
+            var playPromise = music.play();
+
+            // Check if the browser allows autoplay
+            if (playPromise !== undefined) {
+                playPromise.then(function() {
+                    // Autoplay started!
+                    control.innerHTML = 'Pause Music';
+                }).catch(function(error) {
+                    // Autoplay was prevented.
+                    control.innerHTML = 'Play Music';
+                    console.log('Autoplay prevented: ' + error);
+                });
+            }
+        };
+    </script>
 </body>
 </html>
