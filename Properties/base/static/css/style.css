@@ -263,8 +263,6 @@ html, body {
     object-fit: cover;
 }
 
-
-
 .centralized-image {
     display: block;
     margin-left: auto;
@@ -377,54 +375,6 @@ html, body {
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
     border-color: #0056b3; /* Cor mais visível quando focado */
 }
-
-.navbar .dropdown-menu {
-    display: none;
-    position: absolute;
-    top: calc(100% + 5px);
-    left: auto;
-    right: 0; /* Alinha a dropdown à direita */
-    background-color: #34495e !important; /* Fundo escuro consistente */
-    border: 2px solid #FFFFFF !important; /* Borda branca */
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 10px !important; /* Bordas arredondadas */
-    z-index: 1000;
-}
-
-.navbar .dropdown-menu.show {
-    display: block !important;
-}
-
-.navbar .dropdown-item {
-    padding: 12px 20px;
-    color: #FFFFFF !important; /* Cor do texto branco */
-    text-align: left;
-    background-color: transparent !important; /* Fundo transparente para cada item */
-    text-decoration: none;
-    white-space: nowrap;
-    display: block;
-    width: 100%;
-    transition: background 0.3s; /* Transição suave */
-}
-
-.navbar .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.1) !important; /* Destaque ao passar o mouse */
-}
-
-.navbar-profile-picture {
-    height: 40px !important;
-    width: 40px !important;
-    border-radius: 50% !important;
-    object-fit: cover !important;
-    border: 2px solid white !important; /* Adiciona borda branca */
-    transition: border 0.3s, box-shadow 0.3s; /* Transições suaves */
-}
-
-.navbar-profile-picture:hover {
-    border: 2px solid #FF5A5F !important; /* Muda a cor da borda ao passar o mouse */
-    box-shadow: 0 0 10px rgba(255, 90, 95, 0.5) !important; /* Adiciona sombra */
-}
-
 
 .form-login {
     background-color: #1A1F26; /* White background for contrast */
