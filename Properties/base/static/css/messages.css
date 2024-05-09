@@ -1,34 +1,129 @@
-    .containermessages {
-        display: flex !important;
-    }
-    .sidebar {
-        width: 25%;
-        border-right: 1px solid #ccc;
-        padding: 15px;
-    }
-    .main-contentmessages {
-        width: 75%;
-        padding: 15px;
-    }
-    .profile-image {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-    .messages {
-        margin-bottom: 20px;
-    }
-    .sent {
-        text-align: right;
-        color: blue;
-    }
-    .received {
-        text-align: left;
-        color: green;
-    }
-    .timestamp {
-        display: block;
-        font-size: 0.8em;
-        color: #888;
-    }
+.containermessages {
+    display: flex !important;
+    height: 80vh !important;
+    background-color: #2c3e50 !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+}
+
+.sidebar {
+    width: 20% !important; /* Ajustado para mover a sidebar mais à esquerda */
+    border-right: 1px solid #ccc !important;
+    background-color: #34495e !important;
+    padding: 10px !important; /* Reduzido o padding */
+    overflow-y: auto !important;
+}
+
+.sidebar h3 {
+    color: white !important;
+    margin-bottom: 15px !important;
+}
+
+.sidebar ul {
+    list-style: none !important;
+    padding: 0 !important;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px !important;
+}
+
+.sidebar ul li a {
+    display: flex !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    color: white !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    transition: background 0.3s !important;
+}
+
+.sidebar ul li a:hover {
+    background-color: #1abc9c !important;
+}
+
+.profile-image {
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 50% !important;
+    margin-right: 10px !important;
+}
+
+.main-contentmessages {
+    width: 80% !important; /* Ajustado para refletir a mudança da sidebar */
+    padding: 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+}
+
+.main-contentmessages h3 {
+    color: white !important;
+    margin-bottom: 15px !important;
+}
+
+.messages {
+    height: 60vh !important; /* Altura fixa maior para o espaço das mensagens */
+    overflow-y: auto !important;
+    padding: 10px !important;
+    background-color: #ecf0f1 !important;
+    border-radius: 10px !important;
+    margin-bottom: 20px !important;
+}
+
+.messages .sent {
+    text-align: right !important;
+    color: #2980b9 !important;
+}
+
+.messages .received {
+    text-align: left !important;
+    color: #27ae60 !important;
+}
+
+.timestamp {
+    display: block !important;
+    font-size: 0.8em !important;
+    color: #888 !important;
+}
+
+.message-form {
+    background-color: #34495e !important;
+    padding: 15px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    justify-content: space-between !important; /* Alinha botão à direita */
+}
+
+.message-form form {
+    display: flex !important;
+    align-items: center !important; /* Alinha horizontalmente */
+    width: 100% !important;
+}
+
+.message-form form input {
+    flex: 1 !important;
+    padding: 10px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+    margin-right: 10px !important;
+    height: 40px !important;
+}
+
+.message-form form button {
+    background-color: #FF5A5F !important;
+    color: white !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s !important;
+    padding: 10px 20px !important; /* Ajustado para melhor aparência */
+    border: none !important;
+    border-radius: 5px !important;
+    font-size: 16px !important;
+    height: 40px !important; /* Alinha com a caixa de texto */
+}
+
+.message-form form button:hover {
+    background-color: #e5484f !important;
+}

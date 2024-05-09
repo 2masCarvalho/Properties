@@ -21,13 +21,12 @@
                 <div class="messages">
                     {% for message in conversation %}
                         <div class="{% if message.sender == request.user %}sent{% else %}received{% endif %}">
-                            <strong>{{ message.sender.username }}</strong>: {{ message.content }}
+                            <span>{{ message.content }}</span>
                             <span class="timestamp">{{ message.timestamp }}</span>
                         </div>
                     {% endfor %}
                 </div>
                 <div class="message-form">
-                    <h3>Enviar Mensagem</h3>
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}

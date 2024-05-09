@@ -12,7 +12,6 @@
 
         {% if user.is_authenticated %}
             {% if user.profile.profile_picture %}
-
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img src="{{ user.profile.profile_picture.url }}" alt="Profile picture" class="navbar-profile-picture"/>
@@ -26,7 +25,6 @@
                     </form>
                 </div>
             </li>
-
             {% else %}
                 <li>
                     <a href="{% url 'profile' %}" class="nav-link profile">
@@ -40,7 +38,6 @@
         {% endif %}
 
         <li><a href="{% url 'sobrenos' %}" class="nav-link sobrenos">Sobre Nós</a></li>
-
     </ul>
 </nav>
 <hr>
