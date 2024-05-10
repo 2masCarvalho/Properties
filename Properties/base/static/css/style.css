@@ -281,10 +281,17 @@ html, body {
     gap: 20px; /* Adjust the gap between each card */
     justify-content: flex-start; /* Ensure left-to-right alignment */
     padding: 20px 70px;
-
     background-color: #f5f5f5;
 }
-
+.card-property-details{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust the gap between each card */
+    justify-content: flex-start; /* Ensure left-to-right alignment */
+    padding: 20px 70px;
+    height: 500px;
+    background-color: #f5f5f5;
+}
 .property-card {
     position: relative; /* Important for positioning child elements */
     background-color: white;
@@ -509,7 +516,12 @@ html, body {
     gap: 8px; /* Space between the icon and text */
     color: #333; /* Adjust text color as needed */
 }
-
+.detail-item-white{
+    display: flex; /* Arrange the icon and text horizontally */
+    align-items: center; /* Vertically align the icon with the text */
+    gap: 8px; /* Space between the icon and text */
+    color: white; /* Adjust text color as needed */
+}
 .detail-item i {
     font-size: 1.2em; /* Adjust icon size as needed */
     color: #555; /* Adjust icon color as needed */
@@ -541,3 +553,45 @@ html, body {
 ::-webkit-scrollbar-track {
     background-color: #2c3e50; /* Background color of the track */
 }
+
+/* Property Info Card */
+.property-info-card {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: #ffffff; /* White background for the card */
+    border-radius: 12px; /* Rounded corners */
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    width: 80%; /* Adjust width to fill */
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid #e6e6e6; /* Light border */
+    font-family: 'Arial', sans-serif; /* Legible font */
+    z-index: 10; /* Higher index */
+}
+
+.property-info-card .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.column-content {
+    flex: 1;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    background-color: #f9f9f9; /* Slightly off-white for column content */
+    color: white; /* Set the text color to white */
+}
+
+.property-info-card h2 {
+    margin-top: 0;
+    color: white; /* Set headings to white */
+}
+
+.property-info-card ul,
+.property-info-card p {
+    color: white; /* Make lists and paragraphs white */
+}
+

@@ -17,7 +17,28 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
+    def calculate_average_rating(self):
+        if self.user_type != 'host':
+            return None  # Only hosts should have a calculated rating
 
+        reviews = self.reviews_received.all()
+        total_reviews = reviews.count()
+        if total_reviews == 0:
+            return None  # No reviews yet
+
+        total_score = sum([review.rating for review in reviews])
+        return total_score / total_reviews
+
+
+class Review(models.Model):
+    guest = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reviews_given', limit_choices_to={'user_type': 'guest'})
+    host = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reviews_received', limit_choices_to={'user_type': 'host'})
+    rating = models.IntegerField(choices=[(i, str(i)) for i in range(1, 6)])
+    review_text = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f'Review by {self.guest} for {self.host} with rating {self.rating}'
 class Property(models.Model):
     LOCATION_CHOICES = [
         ('faro', 'Faro'),
