@@ -1,20 +1,18 @@
-from django.contrib import messages
 # added recently explicar no relatório
 # Used to display temporary messages in the template; useful for user feedback like errors and confirmations.
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
-from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.db.models import Avg
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
-from django.views.decorators.http import require_POST
 
-from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm, MessageForm, ReviewForm
+from .forms import *
 from .models import Profile, Property, PropertyImage, Message, Review
-
+from .serializers import *
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 def home(request):
     # Apenas mostra as 4 propriedades mais recentes
@@ -272,24 +270,40 @@ def edit_property(request, property_id):
     return render(request, 'edit_property.html', {'form': form, 'images': images})
 
 
-def my_properties_api(request, pk):
-    user_obj = get_object_or_404(Profile, pk=pk)
-    properties = Property.objects.filter(host=user_obj).order_by('-id').select_related('images').values(
-        'id', 'title', 'price', 'location', 'area', 'num_bedrooms', 'num_bathrooms', 'images__image'
-    )
-
-    return JsonResponse(list(properties), safe=False)
 
 
 
 @login_required
 def create_review(request, host_id):
+    if not request.user.is_authenticated:
+        return redirect('login')
+
+    user_profile = request.user.profile
+    if user_profile.user_type != 'guest':
+        return redirect('home')
+
     host = get_object_or_404(Profile, pk=host_id, user_type='host')
+
     if request.method == 'POST':
-        form = ReviewForm(request.POST, host=host)
+        form = ReviewForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('success-url')  # Redirect to a success page
+            review = form.save(commit=False)
+            review.guest = user_profile
+            review.host = host
+            review.save()
+            messages.success(request, 'Review atribuida com sucesso!')
+            return redirect('home')
     else:
-        form = ReviewForm(host=host)
+        form = ReviewForm()
+
     return render(request, 'create_review.html', {'form': form})
+
+
+
+@api_view(['GET'])
+def my_properties(request, pk):
+    user_obj = get_object_or_404(Profile, pk=pk)
+    properties = Property.objects.filter(host=user_obj).order_by('-id')
+
+    serializer = PropertyImageSerializer(properties, many=True)
+    return Response(serializer.data)

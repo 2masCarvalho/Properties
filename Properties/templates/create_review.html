@@ -3,12 +3,12 @@
 
 {% block content %}
 <div class="content">
-    <h2>Rate a Host</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Submit Review</button>
-</form>
+    <h2>Leave a Review for {{ host.user.username }}</h2>
+    <form method="post" class="form-login">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
 </div>
 
 {% endblock %}

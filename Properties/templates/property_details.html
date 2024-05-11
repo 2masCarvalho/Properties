@@ -71,9 +71,7 @@
         <p>Host Average Rating: {{ average_rating|floatformat:1 }}</p>
         <div>
             <button>Contact seller!</button>
-
-            <a href="{% url 'create_review' property.host.id %}" class="button">Give me a review!</a>
-
+            <a href="{% url 'create_review' property.host.id %}" class="btn btn-primary">Dar uma review</a>
         </div>
 
     </div>
