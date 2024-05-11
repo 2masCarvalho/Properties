@@ -1,0 +1,62 @@
+/* CSS for the Sobre Nós page */
+.sobre-nos-container {
+    width: 100%;
+    min-height: 100vh;
+    padding: 50px 20px;
+    background: linear-gradient(180deg, rgba(36, 45, 57, 0.9), rgba(16, 37, 60, 0.9));
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.sobre-nos-container h1 {
+    font-size: 50px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #FF5A5F;
+}
+
+.sobre-nos-container p {
+    max-width: 800px;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.team-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.team-member {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.team-member img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.team-member h3 {
+    font-size: 20px;
+    margin: 10px 0;
+    color: #1ABC9C;
+}
+
+.team-member p {
+    font-size: 14px;
+    color: #ccc;
+}

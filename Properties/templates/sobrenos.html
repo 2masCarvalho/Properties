@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block content %}
+<div class="sobre-nos-container">
+    <h1>Sobre Nós</h1>
+    <p>Bem-vindo à PROPERTIES Algarve! Nossa missão é oferecer uma seleção exclusiva de imóveis para compradores e vendedores em Algarve, Portugal. Estamos comprometidos em fornecer um serviço de alta qualidade, adaptado às necessidades de cada cliente.</p>
+
+    <div class="team-section">
+        <div class="team-member">
+            <img src="{% static 'images/tomassilva.png' %}" alt="Team Member 1">
+            <h3>Tomás Silva</h3>
+            <p>CEO</p>
+        </div>
+        <div class="team-member">
+            <img src="{% static 'images/goncalomaio.jpg' %}" alt="Team Member 2">
+            <h3>Gonçalo Maio</h3>
+            <p>CEO</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
