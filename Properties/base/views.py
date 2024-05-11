@@ -209,3 +209,36 @@ def my_properties(request, pk):
         properties_with_images.append((prop, first_image))
 
     return render(request, 'my_properties.html', {'properties_with_images': properties_with_images})
+
+
+
+@login_required
+def delete_property_view(request, id):
+    property = get_object_or_404(Property, pk=id, host__user=request.user)
+
+    if request.method == 'POST':
+        property.delete()
+        messages.success(request, "Property successfully deleted.")
+        return redirect('home')  # Redirect to a safe page after deletion
+
+    context = {
+        'property': property
+    }
+    return render(request, 'confirm_delete.html', context)
+
+
+
+@login_required
+def edit_property(request, property_id):
+    property = get_object_or_404(Property, pk=property_id, host__user=request.user)
+
+    if request.method == 'POST':
+        form = PropertyForm(request.POST, request.FILES, instance=property)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Property updated successfully!')
+            return redirect('property_detail', pk=property.id)  # Changed 'property_id' to 'pk'
+    else:
+        form = PropertyForm(instance=property)
+
+    return render(request, 'edit_property.html', {'form': form})

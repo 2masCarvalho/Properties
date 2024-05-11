@@ -1,0 +1,98 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <h2>Edit Property</h2>
+    <form method="post" enctype="multipart/form-data" class="form-login">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.title.id_for_label }}">Title:</label>
+            {{ form.title }}
+            {% if form.title.errors %}
+                <div class="error">{{ form.title.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.description.id_for_label }}">Description:</label>
+            {{ form.description }}
+            {% if form.description.errors %}
+                <div class="error">{{ form.description.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.location.id_for_label }}">Location:</label>
+            {{ form.location }}
+            {% if form.location.errors %}
+                <div class="error">{{ form.location.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.price.id_for_label }}">Price:</label>
+            {{ form.price }}
+            {% if form.price.errors %}
+                <div class="error">{{ form.price.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.area.id_for_label }}">Area (sq m):</label>
+            {{ form.area }}
+            {% if form.area.errors %}
+                <div class="error">{{ form.area.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.num_bedrooms.id_for_label }}">Number of Bedrooms:</label>
+            {{ form.num_bedrooms }}
+            {% if form.num_bedrooms.errors %}
+                <div class="error">{{ form.num_bedrooms.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.num_bathrooms.id_for_label }}">Number of Bathrooms:</label>
+            {{ form.num_bathrooms }}
+            {% if form.num_bathrooms.errors %}
+                <div class="error">{{ form.num_bathrooms.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.elevator.id_for_label }}">Elevator:</label>
+            {{ form.elevator }}
+            {% if form.elevator.errors %}
+                <div class="error">{{ form.elevator.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.parking_spaces.id_for_label }}">Parking Spaces:</label>
+            {{ form.parking_spaces }}
+            {% if form.parking_spaces.errors %}
+                <div class="error">{{ form.parking_spaces.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.pool.id_for_label }}">Pool:</label>
+            {{ form.pool }}
+            {% if form.pool.errors %}
+                <div class="error">{{ form.pool.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- Handling image uploads differently if needed -->
+        <div class="form-group">
+            <label for="images">Images:</label>
+            <input type="file" name="images" multiple id="images">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Property</button>
+    </form>
+</div>
+{% endblock %}
