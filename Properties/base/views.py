@@ -10,9 +10,21 @@ from .models import Profile, Property, PropertyImage, Message
 from django.contrib.auth.models import User
 
 
+#added recently explicar no relatório
+# Used to display temporary messages in the template; useful for user feedback like errors and confirmations.
+from django.contrib import messages
+
 
 def home(request):
-    return render(request, 'home.html')
+    #Apenas mostra as 4 propriedades mais recentes
+    properties = Property.objects.order_by('-id')[:4]
+
+    properties_with_images = []
+    for prop in properties:
+        # Obtém a primeira imagem da relação `images` (se houver)
+        first_image = prop.images.first()  # Utiliza o `related_name` definido no modelo
+        properties_with_images.append((prop, first_image))
+    return render(request, 'home.html',{'properties_with_images': properties_with_images})
 
 
 def signup(request):
@@ -82,7 +94,7 @@ def buy(request):
 def sell(request):
     return render(request, 'sell.html')
 
-
+'''
 @login_required
 def add_property(request):
     # Check if the user is a 'host'
@@ -109,7 +121,43 @@ def add_property(request):
         # Redirect to the home page with a temporary message
         messages.info(request, "You need to be logged in as a host to add a property.")
         return redirect('home')
+'''
 
+#No caso do user
+@login_required(redirect_field_name='next', login_url='/login/?next=add_property')
+def add_property(request):
+    # Check if the user is a 'host', redirect with an error message if not.
+    if request.user.profile.user_type != 'host':
+        messages.error(request, "You need to be logged in as a host to add a property.")
+        return redirect('home')
+
+    # Handle form submission.
+    if request.method == 'POST':
+        property_form = PropertyForm(request.POST)
+        image_form = PropertyImageForm(request.POST, request.FILES)
+
+        # Validate forms before saving.
+        if property_form.is_valid() and image_form.is_valid():
+            property_instance = property_form.save(commit=False)
+            property_instance.host = request.user.profile  # Set the host to the logged-in user's profile.
+            property_instance.save()  # Save the property instance to the database.
+
+            # Save each uploaded image file associated with the property.
+            for uploaded_file in image_form.cleaned_data['images']:
+                PropertyImage.objects.create(property=property_instance, image=uploaded_file)
+
+            messages.success(request, "Property added successfully!")  # Success message for user feedback.
+            return redirect('home')
+    else:
+        # Instantiate blank forms for GET request.
+        property_form = PropertyForm()
+        image_form = PropertyImageForm()
+
+    # Render page with the property forms.
+    return render(request, 'add_property.html', {
+        'property_form': property_form,
+        'image_form': image_form
+    })
 
 def property_details(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
@@ -148,3 +196,16 @@ def messages_view(request):
 
 def sobrenos(request):
     return render(request, 'sobrenos.html')
+
+
+def my_properties(request, pk):
+    user_obj = get_object_or_404(Profile, pk=pk)
+    properties = Property.objects.filter(host=user_obj).order_by('-id')
+
+    properties_with_images = []
+    for prop in properties:
+        # Obtém a primeira imagem da relação `images` (se houver)
+        first_image = prop.images.first()  # Utiliza o `related_name` definido no modelo
+        properties_with_images.append((prop, first_image))
+
+    return render(request, 'my_properties.html', {'properties_with_images': properties_with_images})

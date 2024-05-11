@@ -4,67 +4,99 @@
 {% block content %}
 <div class="content">
     <h2>Register Property</h2>
-    <p>We're excited to help you list your property! Please provide all the necessary details using the form below. Filling out these fields ensures potential clients receive a comprehensive and accurate view of your listing, helping them make informed decisions. Let's work together to get your property showcased and rented or sold quickly!</p>
-    <form method="post" enctype="multipart/form-data" class="form-login" style="max-width: 800px">
+    <form method="post" enctype="multipart/form-data" class="form-login">
         {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ property_form.title.id_for_label }}">Title:</label>
+            {{ property_form.title }}
+            {% if property_form.title.errors %}
+                <div class="error">{{ property_form.title.errors }}</div>
+            {% endif %}
+        </div>
 
         <div class="form-group">
-            <label for="{{ form.title.id_for_label }}">Título:</label>
-            {{ form.title }}
+            <label for="{{ property_form.description.id_for_label }}">Description:</label>
+            {{ property_form.description }}
+            {% if property_form.description.errors %}
+                <div class="error">{{ property_form.description.errors }}</div>
+            {% endif %}
         </div>
-        <div class="form-group">
-            <label for="{{ form.description.id_for_label }}">Descrição:</label>
-            {{ form.description }}
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.location.id_for_label }}">Localização:</label>
-                {{ form.location }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.price.id_for_label }}">Preço:</label>
-                {{ form.price }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.area.id_for_label }}">Área:</label>
-                {{ form.area }}
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.num_bedrooms.id_for_label }}">Número de Quartos:</label>
-                {{ form.num_bedrooms }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.num_bathrooms.id_for_label }}">Número de Casas de Banho:</label>
-                {{ form.num_bathrooms }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.parking_spaces.id_for_label }}">Número de Lugares de Estacionamento:</label>
-                {{ form.parking_spaces }}
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group">
-                <label for="{{ form.elevator.id_for_label }}">Tem elevador?</label>
-                {{ form.elevator }}
-            </div>
-            <div class="form-group">
-                <label for="{{ form.pool.id_for_label }}">Tem piscina?</label>
-                {{ form.pool }}
-            </div>
-        </div>
-
 
         <div class="form-group">
-            <label for="{{ image_form.images.id_for_label }}">Imagens: (No máximo 5)</label>
+            <label for="{{ property_form.location.id_for_label }}">Location:</label>
+            {{ property_form.location }}
+            {% if property_form.location.errors %}
+                <div class="error">{{ property_form.location.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ property_form.price.id_for_label }}">Price:</label>
+            {{ property_form.price }}
+            {% if property_form.price.errors %}
+                <div class="error">{{ property_form.price.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ property_form.area.id_for_label }}">Area:</label>
+            {{ property_form.area }}
+            {% if property_form.area.errors %}
+                <div class="error">{{ property_form.area.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ property_form.num_bedrooms.id_for_label }}">Number of Bedrooms:</label>
+            {{ property_form.num_bedrooms }}
+            {% if property_form.num_bedrooms.errors %}
+                <div class="error">{{ property_form.num_bedrooms.errors }}</div>
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="{{ property_form.num_bathrooms.id_for_label }}">Number of Bathrooms:</label>
+            {{ property_form.num_bathrooms }}
+            {% if property_form.num_bathrooms.errors %}
+                <div class="error">{{ property_form.num_bathrooms.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-row">
+        <div class="form-group">
+            <label for="{{ property_form.pool.id_for_label }}">Pool:</label>
+            {{ property_form.pool }}
+            {% if property_form.pool.errors %}
+                <div class="error">{{ property_form.pool.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="{{ property_form.elevator.id_for_label }}">Elevator:</label>
+            {{ property_form.elevator }}
+            {% if property_form.elevator.errors %}
+                <div class="error">{{ property_form.elevator.errors }}</div>
+            {% endif %}
+        </div>
+        </div>
+        <div class="form-group">
+            <label for="{{ property_form.parking_spaces.id_for_label }}">Parking Spaces:</label>
+            {{ property_form.parking_spaces }}
+            {% if property_form.parking_spaces.errors %}
+                <div class="error">{{ property_form.parking_spaces.errors }}</div>
+            {% endif %}
+        </div>
+
+
+
+        <!-- Assuming 'images' is the field name in your PropertyImageForm -->
+        <div class="form-group">
+            <label for="{{ image_form.images.id_for_label }}">Images:</label>
             {{ image_form.images }}
+            {% if image_form.images.errors %}
+                <div class="error">{{ image_form.images.errors }}</div>
+            {% endif %}
         </div>
 
-        <button type="submit">Add Property</button>
+        <button type="submit" class="btn btn-primary">Add Property</button>
     </form>
 </div>
 {% endblock %}

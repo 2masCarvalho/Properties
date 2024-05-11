@@ -19,6 +19,7 @@ urlpatterns = [
     path('comprar/<int:pk>/', views.property_details, name='property_detail'),
     path('messages/', views.messages_view, name='messages'),
     path('sobrenos/', sobrenos, name='sobrenos'),
+    path('myproperties/<int:pk>', views.my_properties, name='my_properties'),
 
 ]
 

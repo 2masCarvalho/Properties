@@ -18,5 +18,12 @@
         <button type="submit">Editar Dados</button>
     </form>
   </div>
+<div class="content">
+  {% if request.user.is_authenticated %}
+    {% if request.user.profile.user_type == 'host' %}
+        <button onclick="location.href='{% url 'my_properties' profile.pk %}'">My Properties</button>
+    {% endif %}
+{% endif %}
+</div>
 {% endblock %}
 

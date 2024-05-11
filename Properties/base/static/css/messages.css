@@ -71,6 +71,15 @@
     border-radius: 10px !important;
     margin-bottom: 20px !important;
 }
+.message-error{
+    height: 10vh !important; /* Altura fixa maior para o espaço das mensagens */
+    overflow-y: auto !important;
+    padding: 10px !important;
+    background-color: #ecf0f1 !important;
+    border-radius: 10px !important;
+    margin-bottom: 20px !important;
+    color: #27ae60!important;
+}
 
 .messages .sent {
     text-align: right !important;

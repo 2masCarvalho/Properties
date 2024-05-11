@@ -2,6 +2,15 @@
 {% load static %}
 
 {% block content %}
+{% if messages %}
+<div class="content">
+    {% for message in messages %}
+    <!-- Conditionally add class attribute inside the p tag -->
+    <p {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</p>
+    {% endfor %}
+</div>
+
+{% endif %}
 
 <div id="homeCarousel" class="carousel slide">
     <ol class="carousel-indicators">
@@ -31,7 +40,7 @@
                 <div class="content">
                     <div class="content">
                         <h2>Serviço Gratuito e Personalizado para Compradores</h2>
-                        <button type="button" onclick="location.href='{% url 'signup' %}'">CLIQUE AQUI!</button>
+                        <button type="button" onclick="location.href='{% url 'signup' %}'">Criar Conta!</button>
                     </div>
                 </div>
             </div>
@@ -43,9 +52,8 @@
                 <div class="content">
                     <h1>BEM-VINDO À PROPERTIES</h1>
                     <p>A maior seleção de Imóveis Exclusivos em Portugal!</p>
-                    <div>
-                        <button type="button" onclick="location.href='{% url 'comprar' %}'">COMPRAR</button>
-                        <button type="button" onclick="location.href='{% url 'add_property' %}'">VENDER</button>
+                    <div class="content">
+                        <button type="button" onclick="location.href='{% url 'sobrenos' %}'">Sobre nós!</button>
                     </div>
                 </div>
             </div>
@@ -62,33 +70,65 @@
 </div>
 
 
-<div class="content " style="margin-top: -100px;">
+<div class="content ">
     <h2>Novidades</h2>
 </div>
 
 
 <div class="card-container">
     {% if properties_with_images %}
-        {% for property, image in properties_with_images %}
-            <a href="{% url 'property_detail' property.pk %}" class="property-link">
-            <div class="property-card">
-                {% if image %}
-                    <img src="{{ image.image.url }}" alt="{{ property.title }} - Image" class="property-image">
-                {% else %}
-                    <p class="no-image">Nenhuma imagem disponível</p>
-                {% endif %}
+    {% for property, image in properties_with_images %}
 
-                <h2 class="property-title">{{ property.title }}</h2>
-                <p class="property-description">{{ property.description }}</p>
-                <p><strong>Localização:</strong> {{ property.location }}</p>
-                <p><strong>Preço:</strong> {{ property.price }}</p>
-            </div>
-            </a>
-        {% endfor %}
-    {% else %}
-        <div class="no-property">
-            Nenhum imóvel disponível no momento.
+    <div class="property-card">
+        {% if image %}
+        <a href="{% url 'property_detail' property.pk %}" class="">
+            <img src="{{ image.image.url }}" alt="{{ property.title }} - Image" class="property-image">
+        </a>
+
+        {% else %}
+        <p class="no-image">Nenhuma imagem disponível</p>
+
+        {% endif %}
+        <button class="favorites-button" title="Add to favorites"><i class="fa-regular fa-heart"></i></button>
+        <p class="property-price"><strong>{{ property.price }} €</strong></p>
+
+        <p class="property-location">
+            {{ property.location|capfirst }}
+        </p>
+        <div class="property-details">
+            <p class="detail-item">
+                <i class="fa-solid fa-house"></i> <!-- Font Awesome icon for area -->
+                <strong> {{ property.area }} m<sup>2</sup> </strong>
+            </p>
+            <p class="detail-item">
+                <i class="fas fa-bed"></i> <!-- Font Awesome icon for bedrooms -->
+                <strong> {{ property.num_bedrooms }} </strong>
+            </p>
+            <p class="detail-item">
+                <i class="fas fa-bath"></i> <!-- Font Awesome icon for bathrooms -->
+                <strong> {{ property.num_bathrooms }} </strong>
+            </p>
         </div>
+
+
+        <!--h2 class="property-title">{{ property.title }}</h2>
+        <p class="property-description">{{ property.description }}</p>
+
+        <p><strong>Preço:</strong> {{ property.price }}</p-->
+    </div>
+
+    {% endfor %}
+    {% else %}
+    <div class="no-property">
+        Nenhum imóvel disponível no momento.
+    </div>
     {% endif %}
 </div>
+
+<div class="content">
+
+    <button type="button" onclick="location.href='{% url 'comprar' %}'">ver mais</button>
+</div>
+
+
 {% endblock %}
