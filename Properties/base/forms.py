@@ -74,13 +74,29 @@ class ReviewForm(forms.ModelForm):
         model = Review
         fields = ['host', 'rating', 'review_text']
         widgets = {
-            'host': forms.Select(attrs={'class': 'form-control'}),
+            'host': forms.Select(attrs={'class': 'form-control', 'readonly': True}),
             'rating': forms.Select(attrs={'class': 'form-control'}),
             'review_text': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
         }
 
-    def __init__(self, *args, **kwargs):
-        guest = kwargs.pop('guest', None)
-        super().__init__(*args, **kwargs)
-        # Assuming guest is a Profile instance of a logged-in user
-        self.fields['host'].queryset = Profile.objects.filter(user_type='host')
+    class ReviewForm(forms.ModelForm):
+        class Meta:
+            model = Review
+            fields = ['rating', 'review_text']  # Exclude 'host' from fields to hide it from the form
+            widgets = {
+                'rating': forms.Select(attrs={'class': 'form-control'}),
+                'review_text': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+            }
+
+        def __init__(self, *args, **kwargs):
+            self.host = kwargs.pop('host', None)  # Remove 'host' from kwargs and store it
+            super(ReviewForm, self).__init__(*args, **kwargs)
+
+        def save(self, commit=True):
+            instance = super(ReviewForm, self).save(commit=False)
+            if self.host:
+                instance.host = self.host  # Set the host attribute directly on the instance
+            if commit:
+                instance.save()
+                self._save_m2m()  # Ensure m2m fields are saved if needed
+            return instance

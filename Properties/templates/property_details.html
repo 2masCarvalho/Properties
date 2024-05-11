@@ -68,11 +68,12 @@
     <div class="col-md-6">
         <h2>Seller Information</h2>
             <img src="{{ property.host.profile_picture.url }}" alt="Host Picture" style="height: 250px">
-        <p>Host Average Rating: {{ average_rating }}</p>
+        <p>Host Average Rating: {{ average_rating|floatformat:1 }}</p>
         <div>
             <button>Contact seller!</button>
 
-            <button>Give me a review!</button>
+            <a href="{% url 'create_review' property.host.id %}" class="button">Give me a review!</a>
+
         </div>
 
     </div>

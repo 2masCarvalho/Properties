@@ -7,12 +7,13 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
+from django.db.models import Avg
 from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
 from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm, MessageForm, ReviewForm
-from .models import Profile, Property, PropertyImage, Message
+from .models import Profile, Property, PropertyImage, Message, Review
 
 
 def home(request):
@@ -164,7 +165,17 @@ def add_property(request):
 
 def property_details(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
-    return render(request, 'property_details.html', {'property': property_obj})
+    average_rating = Review.objects.filter(host=property_obj.host).aggregate(average=Avg('rating'))
+    average = average_rating['average']
+    if average is None:
+        average = "Sem rating"
+
+    context = {
+        'property': property_obj,
+        'average_rating': average
+    }
+
+    return render(request, 'property_details.html', context)
 
 
 def messages_view(request):
@@ -272,18 +283,13 @@ def my_properties_api(request, pk):
 
 
 @login_required
-def create_review(request):
-    guest = Profile.objects.get(user=request.user)  # assuming the user has a profile
-
+def create_review(request, host_id):
+    host = get_object_or_404(Profile, pk=host_id, user_type='host')
     if request.method == 'POST':
-        form = ReviewForm(request.POST, guest=guest)
+        form = ReviewForm(request.POST, host=host)
         if form.is_valid():
-            review = form.save(commit=False)
-            review.guest = guest
-            review.save()
-            # Redirect to a new URL:
-            return redirect('home')
+            form.save()
+            return redirect('success-url')  # Redirect to a success page
     else:
-        form = ReviewForm(guest=guest)
-
+        form = ReviewForm(host=host)
     return render(request, 'create_review.html', {'form': form})

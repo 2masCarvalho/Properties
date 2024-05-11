@@ -20,28 +20,16 @@ class Profile(models.Model):
     @property
     def average_rating(self):
         if self.user_type != 'host':
-            return None  # Only hosts should have a calculated rating
+            return None
 
         reviews = self.reviews_received.all()
         total_reviews = reviews.count()
         if total_reviews == 0:
-            return None  # No reviews yet
+            return None
 
         total_score = sum([review.rating for review in reviews])
         return total_score / total_reviews
 
-
-    def calculate_average_rating(self):
-        if self.user_type != 'host':
-            return None  # Only hosts should have a calculated rating
-
-        reviews = self.reviews_received.all()
-        total_reviews = reviews.count()
-        if total_reviews == 0:
-            return None  # No reviews yet
-
-        total_score = sum([review.rating for review in reviews])
-        return total_score / total_reviews
 
 
 class Review(models.Model):
