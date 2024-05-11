@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block content %}
+<div class="content">
+    <h2>Rate a Host</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Review</button>
+</form>
+</div>
+
+{% endblock %}

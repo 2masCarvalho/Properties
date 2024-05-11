@@ -61,14 +61,23 @@
                 <div class="error">{{ form.num_bathrooms.errors }}</div>
             {% endif %}
         </div>
-
-        <div class="form-group">
+        <div class="form-row">
+            <div class="form-gr oup">
+            <label for="{{ form.pool.id_for_label }}">Pool:</label>
+            {{ form.pool }}
+            {% if form.pool.errors %}
+                <div class="error">{{ form.pool.errors }}</div>
+            {% endif %}
+            </div>
+            <div class="form-group">
             <label for="{{ form.elevator.id_for_label }}">Elevator:</label>
             {{ form.elevator }}
             {% if form.elevator.errors %}
                 <div class="error">{{ form.elevator.errors }}</div>
             {% endif %}
         </div>
+        </div>
+
 
         <div class="form-group">
             <label for="{{ form.parking_spaces.id_for_label }}">Parking Spaces:</label>
@@ -78,15 +87,18 @@
             {% endif %}
         </div>
 
-        <div class="form-group">
-            <label for="{{ form.pool.id_for_label }}">Pool:</label>
-            {{ form.pool }}
-            {% if form.pool.errors %}
-                <div class="error">{{ form.pool.errors }}</div>
-            {% endif %}
-        </div>
 
-        <!-- Handling image uploads differently if needed -->
+
+
+        {% for image in images %}
+        <div class="form-group">
+            <img src="{{ image.image.url }}" alt="Property Image" height="100">
+            <input type="checkbox" name="delete_images" value="{{ image.id }}">
+            <label for="{{ image.id }}">Delete</label>
+        </div>
+        {% endfor %}
+
+        <!-- Field to upload new images -->
         <div class="form-group">
             <label for="images">Images:</label>
             <input type="file" name="images" multiple id="images">
