@@ -1,22 +1,22 @@
 from django.contrib import messages
+# added recently explicar no relatório
+# Used to display temporary messages in the template; useful for user feedback like errors and confirmations.
+from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserChangeForm
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
-from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm, MessageForm
+
+from .forms import SignUpForm, ProfileForm, CustomUserChangeForm, PropertyImageForm, PropertyForm, MessageForm, ReviewForm
 from .models import Profile, Property, PropertyImage, Message
-from django.contrib.auth.models import User
-
-
-#added recently explicar no relatório
-# Used to display temporary messages in the template; useful for user feedback like errors and confirmations.
-from django.contrib import messages
 
 
 def home(request):
-    #Apenas mostra as 4 propriedades mais recentes
+    # Apenas mostra as 4 propriedades mais recentes
     properties = Property.objects.order_by('-id')[:4]
 
     properties_with_images = []
@@ -24,7 +24,7 @@ def home(request):
         # Obtém a primeira imagem da relação `images` (se houver)
         first_image = prop.images.first()  # Utiliza o `related_name` definido no modelo
         properties_with_images.append((prop, first_image))
-    return render(request, 'home.html',{'properties_with_images': properties_with_images})
+    return render(request, 'home.html', {'properties_with_images': properties_with_images})
 
 
 def signup(request):
@@ -94,6 +94,7 @@ def buy(request):
 def sell(request):
     return render(request, 'sell.html')
 
+
 '''
 @login_required
 def add_property(request):
@@ -123,12 +124,13 @@ def add_property(request):
         return redirect('home')
 '''
 
-#No caso do user
+
+# No caso do user
 @login_required(redirect_field_name='next', login_url='/login/?next=add_property')
 def add_property(request):
     # Check if the user is a 'host', redirect with an error message if not.
     if request.user.profile.user_type != 'host':
-        messages.error(request, "You need to be logged in as a host to add a property.")
+        messages.error(request, "Precisa estar autenticado como vendedor para adicionar uma propriedade.")
         return redirect('home')
 
     # Handle form submission.
@@ -159,9 +161,11 @@ def add_property(request):
         'image_form': image_form
     })
 
+
 def property_details(request, pk):
     property_obj = get_object_or_404(Property, pk=pk)
     return render(request, 'property_details.html', {'property': property_obj})
+
 
 def messages_view(request):
     users = User.objects.exclude(id=request.user.id)  # Exclude the current user from the list of conversations
@@ -194,6 +198,7 @@ def messages_view(request):
         'form': form,
     })
 
+
 def sobrenos(request):
     return render(request, 'sobrenos.html')
 
@@ -211,7 +216,6 @@ def my_properties(request, pk):
     return render(request, 'my_properties.html', {'properties_with_images': properties_with_images})
 
 
-
 @login_required
 def delete_property_view(request, id):
     property = get_object_or_404(Property, pk=id, host__user=request.user)
@@ -227,7 +231,6 @@ def delete_property_view(request, id):
     return render(request, 'confirm_delete.html', context)
 
 
-
 @login_required
 def edit_property(request, property_id):
     property = get_object_or_404(Property, pk=property_id, host__user=request.user)
@@ -235,10 +238,52 @@ def edit_property(request, property_id):
     if request.method == 'POST':
         form = PropertyForm(request.POST, request.FILES, instance=property)
         if form.is_valid():
-            form.save()
+            property = form.save()
+
+            # Handle image uploads
+            images = request.FILES.getlist('images')
+            for image in images:
+                PropertyImage.objects.create(property=property, image=image)
+
+            # Handle image deletions
+            delete_image_ids = request.POST.getlist('delete_images')
+            if delete_image_ids:
+                PropertyImage.objects.filter(id__in=delete_image_ids).delete()
+
             messages.success(request, 'Property updated successfully!')
-            return redirect('property_detail', pk=property.id)  # Changed 'property_id' to 'pk'
+            return redirect('property_detail', pk=property.id)
+        else:
+            messages.error(request, 'Please correct the errors below.')
     else:
         form = PropertyForm(instance=property)
 
-    return render(request, 'edit_property.html', {'form': form})
+    images = PropertyImage.objects.filter(property=property)
+    return render(request, 'edit_property.html', {'form': form, 'images': images})
+
+
+def my_properties_api(request, pk):
+    user_obj = get_object_or_404(Profile, pk=pk)
+    properties = Property.objects.filter(host=user_obj).order_by('-id').select_related('images').values(
+        'id', 'title', 'price', 'location', 'area', 'num_bedrooms', 'num_bathrooms', 'images__image'
+    )
+
+    return JsonResponse(list(properties), safe=False)
+
+
+
+@login_required
+def create_review(request):
+    guest = Profile.objects.get(user=request.user)  # assuming the user has a profile
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, guest=guest)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.guest = guest
+            review.save()
+            # Redirect to a new URL:
+            return redirect('home')
+    else:
+        form = ReviewForm(guest=guest)
+
+    return render(request, 'create_review.html', {'form': form})

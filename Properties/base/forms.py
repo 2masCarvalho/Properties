@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from multiupload.fields import MultiFileField
 
-from .models import Profile, Property, PropertyImage, Message
+from .models import Profile, Property, Message, Review
 
 
 class SignUpForm(UserCreationForm):
@@ -55,12 +55,32 @@ class ProfileForm(forms.ModelForm):
 class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
-        fields = ('title', 'description', 'location', 'price', 'area', 'num_bedrooms', 'num_bathrooms', 'elevator', 'parking_spaces', 'pool')
+        fields = ('title', 'description', 'location', 'price', 'area', 'num_bedrooms', 'num_bathrooms', 'elevator',
+                  'parking_spaces', 'pool')
+
 
 class PropertyImageForm(forms.Form):
     images = MultiFileField(min_num=1, max_num=10, max_file_size=1024 * 1024 * 5)  # Máx. 10 arquivos, 5MB cada
+
 
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ['content']
+
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['host', 'rating', 'review_text']
+        widgets = {
+            'host': forms.Select(attrs={'class': 'form-control'}),
+            'rating': forms.Select(attrs={'class': 'form-control'}),
+            'review_text': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        guest = kwargs.pop('guest', None)
+        super().__init__(*args, **kwargs)
+        # Assuming guest is a Profile instance of a logged-in user
+        self.fields['host'].queryset = Profile.objects.filter(user_type='host')
