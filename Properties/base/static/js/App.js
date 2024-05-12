@@ -1,16 +1,11 @@
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import MyProperties from './MyProperties';
+import React from 'react';
+import ContactForm from './ContactForm'; // Adjust the import path according to your file structure
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/myproperties/:userId">
-          <MyProperties />
-        </Route>
-        {/* Other routes */}
-      </Switch>
-    </Router>
+    <div className="App">
+      <ContactForm />
+    </div>
   );
 }
 

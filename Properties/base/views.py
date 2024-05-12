@@ -3,16 +3,12 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.db.models import Avg
-from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import *
-from .models import Profile, Property, PropertyImage, Message, Review
 from .serializers import *
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+
 
 def home(request):
     # Apenas mostra as 4 propriedades mais recentes
@@ -213,17 +209,6 @@ def sobrenos(request):
     return render(request, 'sobrenos.html')
 
 
-def my_properties(request, pk):
-    user_obj = get_object_or_404(Profile, pk=pk)
-    properties = Property.objects.filter(host=user_obj).order_by('-id')
-
-    properties_with_images = []
-    for prop in properties:
-        # Obtém a primeira imagem da relação `images` (se houver)
-        first_image = prop.images.first()  # Utiliza o `related_name` definido no modelo
-        properties_with_images.append((prop, first_image))
-
-    return render(request, 'my_properties.html', {'properties_with_images': properties_with_images})
 
 
 @login_required
@@ -271,9 +256,6 @@ def edit_property(request, property_id):
     return render(request, 'edit_property.html', {'form': form, 'images': images})
 
 
-
-
-
 @login_required
 def create_review(request, host_id):
     if not request.user.is_authenticated:
@@ -310,5 +292,20 @@ def my_properties(request, pk):
     return Response(serializer.data)
 
 '''
+
+
 def contactos(request):
     return render(request, 'contactos.html')
+
+def my_properties(request, pk):
+    user_obj = get_object_or_404(Profile, pk=pk)
+    properties = Property.objects.filter(host=user_obj).order_by('-id')
+
+    properties_with_images = []
+    for prop in properties:
+        # Obtém a primeira imagem da relação `images` (se houver)
+        first_image = prop.images.first()  # Utiliza o `related_name` definido no modelo
+        properties_with_images.append((prop, first_image))
+
+    return render(request, 'my_properties.html', {'properties_with_images': properties_with_images})
+
