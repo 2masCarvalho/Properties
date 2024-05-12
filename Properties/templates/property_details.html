@@ -4,11 +4,9 @@
 {% if messages %}
 <div class="content">
     {% for message in messages %}
-    <!-- Conditionally add class attribute inside the p tag -->
     <p {% if message.tags %}class="{{ message.tags }}" {% endif %}>{{ message }}</p>
     {% endfor %}
 </div>
-
 {% endif %}
 
 <!-- Bootstrap Carousel Component -->
@@ -32,50 +30,40 @@
     </a>
 </div>
 
-<!-- New Section for Property Information in an Airbnb-like Card -->
-
-<div class="row" style="color: white!important;">
-    <div class="col-md-6" style="padding-left: 50px">
-        <h2>Property Details</h2>
-        <ul>
-            <li>Title: {{ property.title }}</li>
-            <li>Price: {{ property.price }} EUR</li>
-            <li>Location: {{ property.location|capfirst }}</li>
-            <div class="property-details" STYLE="color: white !important;">
-                <p class="detail-item-white">
-                    <i class="fa-solid fa-house"></i> <!-- Font Awesome icon for area -->
-                    <strong> {{ property.area }} m<sup>2</sup> </strong>
-                </p>
-                <p class="detail-item-white">
-                    <i class="fas fa-bed"></i> <!-- Font Awesome icon for bedrooms -->
-                    <strong> {{ property.num_bedrooms }} </strong>
-                </p>
-                <p class="detail-item-white">
-                    <i class="fas fa-bath"></i> <!-- Font Awesome icon for bathrooms -->
-                    <strong> {{ property.num_bathrooms }} </strong>
-                </p>
-
-
-            </div>
+<!-- Section for Property Information -->
+<div class="property-detail row">
+    <div class="col-md-8">
+        <h2 class="property-title">Property Details</h2>
+        <ul class="property-info">
+            <li><strong>Title:</strong> {{ property.title }}</li>
+            <li><strong>Price:</strong> {{ property.price }} EUR</li>
+            <li><strong>Location:</strong> {{ property.location|capfirst }}</li>
+            <li><i class="fa-solid fa-house"></i> <strong>{{ property.area }} m<sup>2</sup></strong></li>
+            <li><i class="fas fa-bed"></i> <strong>{{ property.num_bedrooms }}</strong></li>
+            <li><i class="fas fa-bath"></i> <strong>{{ property.num_bathrooms }}</strong></li>
         </ul>
-        <p>{{ property.description }}</p>
+        <p class="property-description">{{ property.description }}</p>
         {% if request.user.is_authenticated and property.host.user == request.user %}
         <!-- Display Edit and Delete Buttons -->
         <a href="{% url 'edit_property' property.id %}" class="btn btn-primary">Edit Property</a>
-        <a href="{% url 'delete_property' property.id %}" class="btn btn-danger" >Delete Property</a>
+        <a href="{% url 'delete_property' property.id %}" class="btn btn-danger">Delete Property</a>
         {% endif %}
     </div>
-    <div class="col-md-6">
-        <h2>Seller Information</h2>
-            <img src="{{ property.host.profile_picture.url }}" alt="Host Picture" style="height: 250px">
-        <p>Host Average Rating: {{ average_rating|floatformat:1 }}</p>
-        <div>
-            <button>Contact seller!</button>
-            <a href="{% url 'create_review' property.host.id %}" class="btn btn-primary">Dar uma review</a>
+    <div class="col-md-4">
+        <div class="host-profile">
+            <h2>Seller Information</h2>
+            <img src="{{ property.host.profile_picture.url }}" alt="Host Picture" class="profile-img">
+            <p>Host Average Rating: {{ average_rating|floatformat:1 }}</p>
+            <p><strong>Username:</strong> {{ property.host.user.username }}</p>
+            <p><strong>First Name:</strong> {{ property.host.user.first_name }}</p>
+            <p><strong>Last Name:</strong> {{ property.host.user.last_name }}</p>
+            <p><strong>Email:</strong> {{ property.host.user.email }}</p>
+            <p><strong>Contact:</strong> {{ property.host.phone_number }}</p>
+            <div class="btn-group">
+                <a href="{% url 'messages' %}?user={{ property.host.user.id }}" class="btn btn-contact">Contact seller!</a>
+                <a href="{% url 'create_review' property.host.id %}" class="btn btn-review">Dar uma review</a>
+            </div>
         </div>
-
     </div>
 </div>
-
-
 {% endblock %}
