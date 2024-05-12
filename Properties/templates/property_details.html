@@ -42,7 +42,7 @@
             <li><i class="fas fa-bed"></i> <strong>{{ property.num_bedrooms }}</strong></li>
             <li><i class="fas fa-bath"></i> <strong>{{ property.num_bathrooms }}</strong></li>
         </ul>
-        <p class="property-description">{{ property.description }}</p>
+        <p class="property-description" style="color: #fff;">{{ property.description }}</p>
         {% if request.user.is_authenticated and property.host.user == request.user %}
         <!-- Display Edit and Delete Buttons -->
         <a href="{% url 'edit_property' property.id %}" class="btn btn-primary">Edit Property</a>
@@ -60,8 +60,13 @@
             <p><strong>Email:</strong> {{ property.host.user.email }}</p>
             <p><strong>Contact:</strong> {{ property.host.phone_number }}</p>
             <div class="btn-group">
+                {% if request.user.is_authenticated %}
                 <a href="{% url 'messages' %}?user={{ property.host.user.id }}" class="btn btn-primary">Contact seller!</a>
                 <a href="{% url 'create_review' property.host.id %}" class="btn btn-primary">Dar uma review</a>
+                {% else %}
+                <a href="{% url 'login' %}?next={% url 'messages' %}?user={{ property.host.user.id }}" class="btn btn-primary">Contact seller!</a>
+                <a href="{% url 'login' %}?next={% url 'create_review' property.host.id %}" class="btn btn-primary">Dar uma review</a>
+                {% endif %}
             </div>
         </div>
     </div>
