@@ -1,8 +1,24 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.flex-fill {
+    flex: 1 0 auto;
+}
+
 .footer {
-     background: linear-gradient(180deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
-    color: #ffffff; /* White text color */
-    padding: 20px 0; /* Vertical padding */
-    margin-top: 20px;
+    background: linear-gradient(180deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+    color: #ffffff;
+    padding: 20px 0;
 }
 
 .footer h5 {

@@ -1,0 +1,73 @@
+/* CSS for the Contact Us page */
+.contact-container {
+    width: 100% !important;
+    min-height: 100vh !important;
+    padding: 30px 20px !important;
+    background: linear-gradient(180deg, rgba(36, 45, 57, 0.9), rgba(16, 37, 60, 0.9)) !important;
+    color: #fff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    text-align: center !important;
+}
+
+.contact-container h1 {
+    font-size: 50px !important;
+    margin-bottom: 10px !important;
+    font-weight: bold !important;
+    color: #FF5A5F !important;
+}
+
+.contact-container p {
+    max-width: 800px !important;
+    font-size: 18px !important;
+    line-height: 1.6 !important;
+    margin-bottom: 30px !important;
+}
+
+.contact-form {
+    width: 100% !important;
+    max-width: 600px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-radius: 10px !important;
+    padding: 20px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px !important;
+    text-align: left !important;
+}
+
+.contact-form label {
+    display: block !important;
+    font-size: 16px !important;
+    margin-bottom: 5px !important;
+    color: #fff !important;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: calc(100% - 22px) !important;
+    padding: 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    color: #333 !important;
+}
+
+.contact-form button {
+    width: 100% !important;
+    padding: 10px !important;
+    background-color: #FF5A5F !important;
+    border: none !important;
+    border-radius: 5px !important;
+    color: #fff !important;
+    font-size: 16px !important;
+    cursor: pointer !important;
+}
+
+.contact-form button:hover {
+    background-color: #FF4A4F !important;
+}

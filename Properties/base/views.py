@@ -28,10 +28,11 @@ def home(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST)
+        form = SignUpForm(request.POST, request.FILES)  # Inclui request.FILES
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
+            user.profile.profile_picture = form.cleaned_data.get('profile_picture')
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
@@ -307,3 +308,7 @@ def my_properties(request, pk):
 
     serializer = PropertyImageSerializer(properties, many=True)
     return Response(serializer.data)
+
+
+def contactos(request):
+    return render(request, 'contactos.html')

@@ -13,6 +13,7 @@ class SignUpForm(UserCreationForm):
     address = forms.CharField(max_length=255, required=True)
     phone_number = forms.CharField(max_length=15, required=True)
     user_type = forms.ChoiceField(choices=Profile.USER_TYPES, required=True)
+    profile_picture = forms.ImageField(required=True)  # Campo obrigatório para a imagem de perfil
 
     class Meta:
         model = User
@@ -27,10 +28,10 @@ class SignUpForm(UserCreationForm):
         if commit:
             user.save()
         user_profile, created = Profile.objects.get_or_create(user=user)
-
         user_profile.address = self.cleaned_data['address']
         user_profile.phone_number = self.cleaned_data['phone_number']
-        user_profile.user_type = self.cleaned_data['user_type']  # Aqui, atribuímos o user_type do formulário
+        user_profile.user_type = self.cleaned_data['user_type']
+        user_profile.profile_picture = self.cleaned_data['profile_picture']  # Campo obrigatório, portanto não precisa de valor padrão
 
         if commit:
             user_profile.save()
@@ -73,7 +74,7 @@ class MessageForm(forms.ModelForm):
 class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
-        fields = ['rating', 'review_text']  # Exclude 'host' from the form
+        fields = ['rating', 'review_text']
         labels = {
             'rating': 'Rating',
             'review_text': 'Review Text',

@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
-from .views import profile, edit_profile, sobrenos
+from .views import profile, edit_profile, sobrenos, contactos
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.conf.urls.static import static
@@ -24,7 +24,7 @@ urlpatterns = [
     path('property/edit/<int:property_id>/', views.edit_property, name='edit_property'),
     path('api/myproperties/<int:pk>/', views.my_properties, name='my_properties'),
     path('review/<int:host_id>/', views.create_review, name='create_review'),
-
+    path('contactos/', contactos, name='contactos'),
 
 ]
 
