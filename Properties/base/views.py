@@ -300,7 +300,7 @@ def create_review(request, host_id):
     return render(request, 'create_review.html', {'form': form})
 
 
-
+'''
 @api_view(['GET'])
 def my_properties(request, pk):
     user_obj = get_object_or_404(Profile, pk=pk)
@@ -309,6 +309,6 @@ def my_properties(request, pk):
     serializer = PropertyImageSerializer(properties, many=True)
     return Response(serializer.data)
 
-
+'''
 def contactos(request):
     return render(request, 'contactos.html')
