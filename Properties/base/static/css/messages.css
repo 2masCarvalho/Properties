@@ -8,10 +8,10 @@
 }
 
 .sidebar {
-    width: 20% !important; /* Ajustado para mover a sidebar mais à esquerda */
+    width: 20% !important;
     border-right: 1px solid #ccc !important;
     background-color: #34495e !important;
-    padding: 10px !important; /* Reduzido o padding */
+    padding: 10px !important;
     overflow-y: auto !important;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .main-contentmessages {
-    width: 80% !important; /* Ajustado para refletir a mudança da sidebar */
+    width: 80% !important;
     padding: 20px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -64,7 +64,7 @@
 }
 
 .messages {
-    height: 60vh !important; /* Altura fixa maior para o espaço das mensagens */
+    height: 60vh !important;
     overflow-y: auto !important;
     padding: 10px !important;
     background-color: #ecf0f1 !important;
@@ -72,7 +72,7 @@
     margin-bottom: 20px !important;
 }
 .message-error{
-    height: 10vh !important; /* Altura fixa maior para o espaço das mensagens */
+    height: 10vh !important;
     overflow-y: auto !important;
     padding: 10px !important;
     background-color: #ecf0f1 !important;
@@ -102,12 +102,12 @@
     padding: 15px !important;
     border-radius: 10px !important;
     display: flex !important;
-    justify-content: space-between !important; /* Alinha botão à direita */
+    justify-content: space-between !important;
 }
 
 .message-form form {
     display: flex !important;
-    align-items: center !important; /* Alinha horizontalmente */
+    align-items: center !important;
     width: 100% !important;
 }
 
@@ -126,11 +126,11 @@
     color: white !important;
     cursor: pointer !important;
     transition: background-color 0.3s !important;
-    padding: 10px 20px !important; /* Ajustado para melhor aparência */
+    padding: 10px 20px !important;
     border: none !important;
     border-radius: 5px !important;
     font-size: 16px !important;
-    height: 40px !important; /* Alinha com a caixa de texto */
+    height: 40px !important;
 }
 
 .message-form form button:hover {

@@ -2,9 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.models import User
 from multiupload.fields import MultiFileField
-
 from .models import Profile, Property, Message, Review
-
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True)
@@ -13,7 +11,7 @@ class SignUpForm(UserCreationForm):
     address = forms.CharField(max_length=255, required=True)
     phone_number = forms.CharField(max_length=15, required=True)
     user_type = forms.ChoiceField(choices=Profile.USER_TYPES, required=True)
-    profile_picture = forms.ImageField(required=True)  # Campo obrigatório para a imagem de perfil
+    profile_picture = forms.ImageField(required=True)
 
     class Meta:
         model = User
@@ -38,7 +36,6 @@ class SignUpForm(UserCreationForm):
 
         return user
 
-
 class CustomUserChangeForm(UserChangeForm):
     password = None
 
@@ -52,24 +49,19 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ('address', 'phone_number', 'profile_picture')
 
-
 class PropertyForm(forms.ModelForm):
     class Meta:
         model = Property
         fields = ('title', 'description', 'location', 'price', 'area', 'num_bedrooms', 'num_bathrooms', 'elevator',
                   'parking_spaces', 'pool')
 
-
 class PropertyImageForm(forms.Form):
     images = MultiFileField(min_num=1, max_num=10, max_file_size=1024 * 1024 * 5)  # Máx. 10 arquivos, 5MB cada
-
 
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = ['content']
-
-
 
 class ReviewForm(forms.ModelForm):
     class Meta:
@@ -79,4 +71,3 @@ class ReviewForm(forms.ModelForm):
             'rating': 'Rating',
             'review_text': 'Review Text',
         }
-

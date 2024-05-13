@@ -1,20 +1,19 @@
-/* CSS for the Sobre Nós page */
 .sobre-nos-container {
     width: 100%;
     min-height: 100vh;
-    padding: 30px 20px;  /* Reduzi o padding superior e inferior para 30px */
+    padding: 30px 20px;
     background: linear-gradient(180deg, rgba(36, 45, 57, 0.9), rgba(16, 37, 60, 0.9));
     color: #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;  /* Alinhamento do conteúdo no topo */
+    justify-content: flex-start;
     text-align: center;
 }
 
 .sobre-nos-container h1 {
     font-size: 50px;
-    margin-bottom: 10px;  /* Reduzi o margin inferior para 10px */
+    margin-bottom: 10px;
     font-weight: bold;
     color: #FF5A5F;
 }
@@ -23,7 +22,7 @@
     max-width: 800px;
     font-size: 18px;
     line-height: 1.6;
-    margin-bottom: 20px;  /* Reduzi o margin inferior para 20px */
+    margin-bottom: 20px;
 }
 
 .team-section {

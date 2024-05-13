@@ -1,4 +1,3 @@
-/* CSS for Property Details Page */
 .property-detail {
     width: 100%;
     min-height: 100vh;
@@ -6,10 +5,10 @@
     background: linear-gradient(180deg, rgba(36, 45, 57, 0.9), rgba(16, 37, 60, 0.9));
     color: #fff;
     display: flex;
-    flex-direction: row; /* Alinhamento horizontal */
+    flex-direction: row;
     align-items: flex-start;
-    justify-content: space-between; /* Espaço entre colunas */
-    text-align: left; /* Alinhamento do texto à esquerda */
+    justify-content: space-between;
+    text-align: left;
 }
 
 .property-title {
@@ -37,7 +36,7 @@
     font-size: 18px;
     line-height: 1.6;
     margin-bottom: 20px;
-    color: #ffffff; /* Cor do texto branco */
+    color: #ffffff;
 }
 
 .host-profile {
@@ -46,7 +45,7 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 100%; /* Largura total da coluna */
+    width: 100%;
 }
 
 .profile-img {

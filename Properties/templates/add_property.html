@@ -61,6 +61,7 @@
                 <div class="error">{{ property_form.num_bathrooms.errors }}</div>
             {% endif %}
         </div>
+
         <div class="form-row">
         <div class="form-group">
             <label for="{{ property_form.pool.id_for_label }}">Pool:</label>
@@ -85,9 +86,6 @@
             {% endif %}
         </div>
 
-
-
-        <!-- Assuming 'images' is the field name in your PropertyImageForm -->
         <div class="form-group">
             <label for="{{ image_form.images.id_for_label }}">Images:</label>
             {{ image_form.images }}

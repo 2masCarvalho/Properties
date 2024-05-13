@@ -42,11 +42,11 @@
     text-decoration: none;
     color: white;
     text-transform: uppercase;
-    transition: color 0.3s; /* Smooth transition */
+    transition: color 0.3s;
 }
 
 .navbar ul li a:hover {
-    color: #FF5A5F; /* Change text color on hover */
+    color: #FF5A5F;
 }
 
 .navbar ul li::after {

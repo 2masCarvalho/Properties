@@ -1,5 +1,3 @@
-# added recently explicar no relatório
-# Used to display temporary messages in the template; useful for user feedback like errors and confirmations.
 from django.contrib import messages
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
@@ -8,7 +6,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 
 from .forms import *
 from .serializers import *
-
 
 def home(request):
     # Apenas mostra as 4 propriedades mais recentes
@@ -21,10 +18,9 @@ def home(request):
         properties_with_images.append((prop, first_image))
     return render(request, 'home.html', {'properties_with_images': properties_with_images})
 
-
 def signup(request):
     if request.method == 'POST':
-        form = SignUpForm(request.POST, request.FILES)  # Inclui request.FILES
+        form = SignUpForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
@@ -49,13 +45,11 @@ def profile(request):
     }
     return render(request, 'profile.html', context)
 
-
 @login_required(login_url='/login/')
 def edit_profile(request):
     if request.method == 'POST':
         user_form = CustomUserChangeForm(request.POST, instance=request.user)
-        profile_form = ProfileForm(request.POST, request.FILES,
-                                   instance=request.user.profile)  # Atenção ao request.FILES aqui
+        profile_form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
             profile = profile_form.save(commit=False)
@@ -74,10 +68,8 @@ def edit_profile(request):
     }
     return render(request, 'edit_profile.html', context)
 
-
 def buy(request):
     properties = Property.objects.order_by('-id')
-
     properties_with_images = []
     for prop in properties:
         # Obtém a primeira imagem da relação `images` (se houver)
@@ -86,40 +78,8 @@ def buy(request):
 
     return render(request, 'buy.html', {'properties_with_images': properties_with_images})
 
-
 def sell(request):
     return render(request, 'sell.html')
-
-
-'''
-@login_required
-def add_property(request):
-    # Check if the user is a 'host'
-    if request.user.profile.user_type == 'host':
-        if request.method == 'POST':
-            property_form = PropertyForm(request.POST)
-            image_form = PropertyImageForm(request.POST, request.FILES)
-
-            if property_form.is_valid() and image_form.is_valid():
-                property_instance = property_form.save(commit=False)
-                property_instance.host = request.user.profile
-                property_instance.save()
-
-                for uploaded_file in image_form.cleaned_data['images']:
-                    PropertyImage.objects.create(property=property_instance, image=uploaded_file)
-
-                return redirect('home')
-        else:
-            property_form = PropertyForm()
-            image_form = PropertyImageForm()
-
-        return render(request, 'add_property.html', {'form': property_form, 'image_form': image_form})
-    else:
-        # Redirect to the home page with a temporary message
-        messages.info(request, "You need to be logged in as a host to add a property.")
-        return redirect('home')
-'''
-
 
 # No caso do user
 @login_required(redirect_field_name='next', login_url='/login/?next=add_property')
@@ -171,7 +131,6 @@ def property_details(request, pk):
     }
 
     return render(request, 'property_details.html', context)
-
 
 def messages_view(request):
     users = User.objects.exclude(id=request.user.id)  # Exclude the current user from the list of conversations

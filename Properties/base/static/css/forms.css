@@ -1,47 +1,43 @@
-/* General form styles */
 form {
-    background-color: #1A1F26; /* White background for contrast */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    padding: 0 10px; /* Spacious padding */
-    max-width: 400px; /* Restrict form width */
-    width: 100%; /* Make it responsive */
-    margin: 20px auto; /* Center the form */
+    background-color: #1A1F26;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 0 10px;
+    max-width: 400px;
+    width: 100%;
+    margin: 20px auto;
 }
 
-/* Text input styles */
 form input[type="text"],
 form input[type="password"],
 form input[type="email"] {
     width: 100%;
-    padding: 12px; /* Uniform padding */
-    margin-bottom: 0px; /* Spacing between fields */
-    border: 0 solid #ccc; /* Light border */
-    border-radius: 8px; /* Rounded corners */
+    padding: 12px;
+    margin-bottom: 0px;
+    border: 0 solid #ccc;
+    border-radius: 8px;
     box-sizing: border-box;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
     background-color: #E0E0E0;
 }
 
-/* Button styles */
 form button[type="submit"] {
-    background-color: #FF5A5F; /* Airbnb's signature red */
+    background-color: #FF5A5F;
     border: none;
-    border-radius: 8px; /* Rounded button */
-    color: #fff; /* White text */
-    padding: 12px 24px; /* Spacious padding */
+    border-radius: 8px;
+    color: #fff;
+    padding: 12px 24px;
     cursor: pointer;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
     transition: background-color 0.2s ease;
-    width: 50%; /* Full-width button */
-    display: flex; /* Make button block-level */
-    margin: 10px auto; /* Center the button horizontally */
+    width: 50%;
+    display: flex;
+    margin: 10px auto;
     justify-content: center;
 }
 
-/* Button hover effect */
 form button[type="submit"]:hover {
-    background-color: #E84545; /* Darker shade for hover effect */
+    background-color: #E84545;
 }
 
 h2{
@@ -54,7 +50,7 @@ h2{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 50vh; /* Increased minimum height */
+    min-height: 50vh;
     text-align: start;
-    color: #FAFAFA; /* Dark gray color */
+    color: #FAFAFA;
 }

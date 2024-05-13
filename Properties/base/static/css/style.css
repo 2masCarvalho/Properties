@@ -74,39 +74,39 @@ html, body {
 }
 
 .content button {
-    background-color: #FF5A5F; /* Airbnb's brand color (or change this to your preferred color) */
-    color: #ffffff; /* White text */
-    border: none; /* Remove default borders */
-    padding: 15px 30px; /* Adjust padding as needed to increase size */
-    font-size: 18px; /* Adjust font size to make the text bigger */
-    font-weight: bold; /* Bold text */
-    border-radius: 25px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor for better UX */
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
-    transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
-    margin-right: 15px; /* Add right margin to space buttons */
+    background-color: #FF5A5F;
+    color: #ffffff;
+    border: none;
+    padding: 15px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-right: 15px;
 }
 
 .content button:last-of-type {
-    margin-right: 0; /* Remove the right margin from the last button */
+    margin-right: 0;
 }
 
 .content button:hover {
-    background-color: #e5484f; /* Slightly darker shade */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Deeper shadow on hover */
+    background-color: #e5484f;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .content button:focus {
-    outline: none; /* Remove the default outline */
-    box-shadow: 0 0 0 3px rgba(255, 90, 95, 0.4); /* Highlight outline */
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 90, 95, 0.4);
 }
-/* Focus state for better accessibility */
+
 .carousel-caption-custom {
-    position: absolute; /* Ensure it's absolutely positioned within the carousel */
-    top: 40%; /* Adjust this value as needed */
-    width: 100%; /* Make it full-width to align centrally */
-    text-align: center; /* Center-align text content */
-    transform: translateY(-50%); /* Optional: Adjusts position for vertical centering */
+    position: absolute;
+    top: 40%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
 }
 
 .signup-form {
@@ -118,8 +118,8 @@ html, body {
 }
 
 .form-group {
-    flex-grow: 1; /* Permite que cada grupo de formulário cresça para preencher o espaço disponível */
-    margin-right: 20px; /* Adiciona margem à direita para cada form-group */
+    flex-grow: 1;
+    margin-right: 20px;
 }
 
 .signup-form button {
@@ -149,8 +149,8 @@ html, body {
 
 .form-row {
     display: flex;
-    justify-content: space-between; /* Isso garante que haja espaço entre os campos */
-    align-items: center; /* Mantém os campos alinhados verticalmente */
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 }
 
@@ -278,22 +278,22 @@ html, body {
 .card-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap between each card */
-    justify-content: flex-start; /* Ensure left-to-right alignment */
+    gap: 20px;
+    justify-content: flex-start;
     padding: 20px 70px;
     background-color: #f5f5f5;
 }
 .card-property-details{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px; /* Adjust the gap between each card */
-    justify-content: flex-start; /* Ensure left-to-right alignment */
+    gap: 20px;
+    justify-content: flex-start;
     padding: 20px 70px;
     height: 500px;
     background-color: #f5f5f5;
 }
 .property-card {
-    position: relative; /* Important for positioning child elements */
+    position: relative;
     background-color: white;
     border: 1px solid #e0e0e0;
     border-radius: 10px;
@@ -318,11 +318,11 @@ html, body {
 }
 
 .property-image {
-    width: 100%; /* Ajusta a largura da imagem para preencher o contêiner */
-    height: 200px; /* Altura fixa para todas as imagens, mantendo a proporção visual */
-    object-fit: cover; /* Garante que a imagem cubra o espaço disponível sem distorcer, cortando o excesso */
-    border-radius: 5px; /* Bordas arredondadas para a imagem */
-    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 15px;
 }
 
 .no-image {
@@ -360,7 +360,7 @@ html, body {
 }
 
 .form-group input, .form-group select, .form-group textarea {
-    width: 100%; /* Faz com que os inputs ocupem o espaço total do .form-group */
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -380,53 +380,52 @@ html, body {
 }
 
 .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: #0056b3; /* Cor mais visível quando focado */
+    border-color: #0056b3;
 }
 
 .form-login {
-    background-color: #1A1F26; /* White background for contrast */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
-    padding: 30px; /* Spacious padding */
+    background-color: #1A1F26;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
     padding-bottom: 60px;
-    max-width: 400px; /* Restrict form width */
-    width: 100%; /* Make it responsive */
-    margin: 20px; /* Center the form */
+    max-width: 400px;
+    width: 100%;
+    margin: 20px;
 }
 
 .form-login input[type="text"],
 .form-login input[type="password"],
 .form-login input[type="email"] {
     width: 100%;
-    padding: 12px; /* Uniform padding */
-    margin-bottom: 0px; /* Spacing between fields */
-    border: 0 solid #ccc; /* Light border */
-    border-radius: 8px; /* Rounded corners */
+    padding: 12px;
+    margin-bottom: 0px;
+    border: 0 solid #ccc;
+    border-radius: 8px;
     box-sizing: border-box;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
     background-color: #E0E0E0;
 }
 
 .form-login button[type="submit"] {
-    background-color: #FF5A5F; /* Airbnb's signature red */
+    background-color: #FF5A5F;
     border: none;
-    border-radius: 8px; /* Rounded button */
-    color: #fff; /* White text */
-    padding: 12px 24px; /* Spacious padding */
+    border-radius: 8px;
+    color: #fff;
+    padding: 12px 24px;
     cursor: pointer;
-    font-size: 16px; /* Increased font size */
+    font-size: 16px;
     transition: background-color 0.2s ease;
-    width: 50%; /* Full-width button */
+    width: 50%;
 }
 
 .form-login .form-row {
     display: flex;
     justify-content: space-between;
-    gap: 10px; /* Add spacing between the two fields */
-    margin-bottom: 15px; /* Add margin between each row */
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-/* Ensure form groups are half-width within each row */
 .form-login .form-group {
     flex: 1;
     display: flex;
@@ -434,7 +433,7 @@ html, body {
 }
 
 .form-login .form-group label {
-    margin-bottom: 5px; /* Add space between the label and the field */
+    margin-bottom: 5px;
 }
 
 .form-login .form-group input,
@@ -449,18 +448,18 @@ html, body {
 }
 
 .favorites-button {
-    position: absolute; /* Allows placement relative to the nearest positioned ancestor (property-card) */
-    top: 20px; /* Adjust to move the button down from the top edge */
-    right: 20px; /* Adjust to move the button left from the right edge */
-    background-color: #FF5A5F; /* Customize the button color */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #FF5A5F;
     color: white;
     border: none;
     border-radius: 50%;
-    width: 40px; /* Adjust size as needed */
+    width: 40px;
     height: 40px;
     cursor: pointer;
-    font-size: 16px; /* Adjust font size as needed */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add shadow for visibility */
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -469,62 +468,62 @@ html, body {
 }
 
 .favorites-button:hover {
-    background-color: #ff4c4f; /* Darker shade on hover */
+    background-color: #ff4c4f;
     transform: scale(1.1);
 }
 
 .property-price {
     position: absolute;
-    bottom: 80px; /* Adjust based on required offset */
-    left: 30px; /* Adjust based on required offset */
+    bottom: 80px;
+    left: 30px;
     color: white;
-    font-size: 1em; /* Increase as needed */
+    font-size: 1em;
     font-weight: bold;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for visibility */
-    padding: 5px 10px; /* Padding around the text */
-    border-radius: 5px; /* Slight rounding for a softer look */
-    z-index: 10; /* Ensure it is on top of other elements */
-    visibility: visible; /* Ensure visibility is set to 'visible' */
-    opacity: 1; /* Ensure full opacity */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 5px;
+    z-index: 10;
+    visibility: visible;
+    opacity: 1;
 }
 
 .property-location {
     position: absolute;
-    bottom: 30px; /* Adjust the spacing from the bottom */
-    left: 10px; /* Adjust the spacing from the left */
+    bottom: 30px;
+    left: 10px;
     color: #333;
     font-size: 1.1em;
     font-weight: bold;
 
     padding: 5px 10px;
     border-radius: 5px;
-    z-index: 10; /* Ensure it's visible above other elements */
+    z-index: 10;
 }
 
 .property-details {
-    display: flex; /* Arrange items in a row */
-    gap: 20px; /* Space between the items */
-    align-items: center; /* Vertically align items */
-    margin-top: 10px; /* Adjust the value to move the row down */
-    padding-top: 10px; /* Optionally, add extra padding if needed */
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
 
 }
 
 .detail-item {
-    display: flex; /* Arrange the icon and text horizontally */
-    align-items: center; /* Vertically align the icon with the text */
-    gap: 8px; /* Space between the icon and text */
-    color: #333; /* Adjust text color as needed */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
 }
 .detail-item-white{
-    display: flex; /* Arrange the icon and text horizontally */
-    align-items: center; /* Vertically align the icon with the text */
-    gap: 8px; /* Space between the icon and text */
-    color: white; /* Adjust text color as needed */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
 }
 .detail-item i {
-    font-size: 1.2em; /* Adjust icon size as needed */
-    color: #555; /* Adjust icon color as needed */
+    font-size: 1.2em;
+    color: #555;
 }
 
 .detail-item strong {
@@ -532,41 +531,42 @@ html, body {
 }
 
 /* Width and background of the scrollbar */
+
 ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
-    background-color: #2c3e50; /* Background color of the scrollbar track */
+    width: 12px;
+    background-color: #2c3e50;
 }
 
 /* Background of the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-    background-color: #FF5A5F; /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Round corners */
-    border: 3px solid #2c3e50; /* Padding around the thumb */
+    background-color: #FF5A5F;
+    border-radius: 10px;
+    border: 3px solid #2c3e50;
 }
 
 /* Hover effect on the scrollbar thumb */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #ff7375; /* Color when hovering */
+    background-color: #ff7375;
 }
 
 /* Background of the scrollbar track */
 ::-webkit-scrollbar-track {
-    background-color: #2c3e50; /* Background color of the track */
+    background-color: #2c3e50;
 }
 
 /* Property Info Card */
 .property-info-card {
     margin-top: 40px;
     padding: 30px;
-    background-color: #ffffff; /* White background for the card */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    width: 80%; /* Adjust width to fill */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    width: 80%;
     margin-left: auto;
     margin-right: auto;
-    border: 1px solid #e6e6e6; /* Light border */
-    font-family: 'Arial', sans-serif; /* Legible font */
-    z-index: 10; /* Higher index */
+    border: 1px solid #e6e6e6;
+    font-family: 'Arial', sans-serif;
+    z-index: 10;
 }
 
 .property-info-card .row {
@@ -581,17 +581,16 @@ html, body {
     padding: 20px;
     border: 1px solid #dddddd;
     border-radius: 8px;
-    background-color: #f9f9f9; /* Slightly off-white for column content */
-    color: white; /* Set the text color to white */
+    background-color: #f9f9f9;
+    color: white;
 }
 
 .property-info-card h2 {
     margin-top: 0;
-    color: white; /* Set headings to white */
+    color: white;
 }
 
 .property-info-card ul,
 .property-info-card p {
-    color: white; /* Make lists and paragraphs white */
+    color: white;
 }
-
