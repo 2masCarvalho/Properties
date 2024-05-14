@@ -22,7 +22,6 @@ urlpatterns = [
     path('myproperties/<int:pk>', views.my_properties, name='my_properties'),
     path('property/delete/<int:id>/', views.delete_property_view, name='delete_property'),
     path('property/edit/<int:property_id>/', views.edit_property, name='edit_property'),
-
     path('review/<int:host_id>/', views.create_review, name='create_review'),
     path('contactos/', contactos, name='contactos'),
 ]

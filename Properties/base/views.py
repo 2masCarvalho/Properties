@@ -3,14 +3,12 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.shortcuts import render, redirect, get_object_or_404
-
 from .forms import *
 from .serializers import *
 
 def home(request):
     # Apenas mostra as 4 propriedades mais recentes
     properties = Property.objects.order_by('-id')[:4]
-
     properties_with_images = []
     for prop in properties:
         # Obtém a primeira imagem da relação `images` (se houver)
@@ -163,12 +161,8 @@ def messages_view(request):
         'form': form,
     })
 
-
 def sobrenos(request):
     return render(request, 'sobrenos.html')
-
-
-
 
 @login_required
 def delete_property_view(request, id):
@@ -240,19 +234,6 @@ def create_review(request, host_id):
 
     return render(request, 'create_review.html', {'form': form})
 
-
-'''
-@api_view(['GET'])
-def my_properties(request, pk):
-    user_obj = get_object_or_404(Profile, pk=pk)
-    properties = Property.objects.filter(host=user_obj).order_by('-id')
-
-    serializer = PropertyImageSerializer(properties, many=True)
-    return Response(serializer.data)
-
-'''
-
-
 def contactos(request):
     return render(request, 'contactos.html')
 
@@ -267,4 +248,3 @@ def my_properties(request, pk):
         properties_with_images.append((prop, first_image))
 
     return render(request, 'my_properties.html', {'properties_with_images': properties_with_images})
-
