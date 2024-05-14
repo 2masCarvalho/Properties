@@ -29,8 +29,6 @@ class Profile(models.Model):
         total_score = sum([review.rating for review in reviews])
         return total_score / total_reviews
 
-
-
 class Review(models.Model):
     guest = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reviews_given', limit_choices_to={'user_type': 'guest'})
     host = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='reviews_received', limit_choices_to={'user_type': 'host'})
@@ -40,7 +38,6 @@ class Review(models.Model):
 
     def __str__(self):
         return f'Review by {self.guest} for {self.host} with rating {self.rating}'
-
 
 class Property(models.Model):
     LOCATION_CHOICES = [
@@ -68,7 +65,6 @@ class Property(models.Model):
 
     def __str__(self):
         return self.title
-
 
 class PropertyImage(models.Model):
     property = models.ForeignKey('Property', related_name='images', on_delete=models.CASCADE)
