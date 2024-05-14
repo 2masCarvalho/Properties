@@ -231,7 +231,6 @@ def create_review(request, host_id):
             return redirect('home')
     else:
         form = ReviewForm()
-
     return render(request, 'create_review.html', {'form': form})
 
 def contactos(request):

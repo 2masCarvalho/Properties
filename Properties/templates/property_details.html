@@ -9,7 +9,6 @@
 </div>
 {% endif %}
 
-<!-- Bootstrap Carousel Component -->
 <div id="propertyImagesCarousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         {% for image in property.images.all %}
@@ -30,7 +29,6 @@
     </a>
 </div>
 
-<!-- Section for Property Information -->
 <div class="property-detail row">
     <div class="col-md-8">
         <h2 class="property-title">Property Details</h2>
@@ -44,7 +42,7 @@
         </ul>
         <p class="property-description" style="color: #fff;">{{ property.description }}</p>
         {% if request.user.is_authenticated and property.host.user == request.user %}
-        <!-- Display Edit and Delete Buttons -->
+
         <a href="{% url 'edit_property' property.id %}" class="btn btn-primary">Edit Property</a>
         <a href="{% url 'delete_property' property.id %}" class="btn btn-danger">Delete Property</a>
         {% endif %}
